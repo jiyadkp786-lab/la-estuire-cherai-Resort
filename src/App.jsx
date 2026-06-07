@@ -630,6 +630,14 @@ function App() {
           </video>
           {/* Bottom black fade gradient to blend seamlessly into the next section */}
           <div className="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-black to-transparent pointer-events-none" />
+          {/* Resort logo overlay covering the watermark in bottom-right corner */}
+          <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3 bg-black/45 backdrop-blur-md px-5 py-3.5 rounded-full border border-white/10 shadow-lg select-none pointer-events-none">
+            <ResortLogo className="h-11 w-11" />
+            <div className="flex flex-col leading-none text-left">
+              <span className="font-display text-[12px] font-light tracking-[0.2em] text-white">LA ESTUAIRE</span>
+              <span className="text-[8.5px] tracking-[0.3em] font-medium text-[#B8E0E0] mt-0.5">CHERAI</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -783,7 +791,7 @@ function App() {
             {/* Headline — elegant light display serif */}
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-tight text-white">
               A Hidden Escape<br />
-              <span className="font-normal italic">Between Sea &amp; Backwaters</span>
+              <span className="font-normal">Between Sea &amp; Backwaters</span>
             </h2>
 
             {/* Thin decorative rule */}
