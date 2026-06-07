@@ -846,6 +846,91 @@ function App() {
 
       </section>
 
+      {/* Promo Video Section */}
+      <section id="promo-video" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray w-full overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
+            
+            {/* Left: Video Player */}
+            <div className="lg:col-span-7 aspect-video w-full relative rounded-[24px] md:rounded-[32px] overflow-hidden shadow-lg bg-light-gray">
+              <video 
+                src="/resort-ad-final.mp4" 
+                controls 
+                playsInline 
+                className="w-full h-full object-cover"
+                poster="/hero-resort.jpeg"
+              />
+            </div>
+
+            {/* Right: Content Details */}
+            <div className="lg:col-span-5 flex flex-col gap-6 text-left">
+              {/* Eyebrow with Line */}
+              <div className="flex items-center gap-3">
+                <span className="w-12 h-[1px] bg-ocean" />
+                <span className="text-ocean text-xs font-bold tracking-[0.2em] uppercase">
+                  RESORT AD FILM
+                </span>
+              </div>
+
+              {/* Headline */}
+              <h2 className="font-display text-3xl sm:text-4xl md:text-[2.6rem] font-medium leading-tight tracking-tight text-dark-text">
+                A Visual Journey of Serenity
+              </h2>
+
+              {/* Description */}
+              <p className="text-dark-text/70 text-sm md:text-[1rem] font-light leading-relaxed max-w-xl">
+                Watch our official resort ad film to catch a glimpse of the luxury, serenity, and beautiful moments that await you at Cherai. Experience the gentle waves of the Arabian Sea and the calm of the backwaters.
+              </p>
+
+              {/* Bullet Points */}
+              <ul className="flex flex-col gap-4 mt-2">
+                <li className="flex gap-3 items-start">
+                  <div className="w-5 h-5 rounded-full bg-ocean flex items-center justify-center text-white flex-shrink-0 mt-0.5 shadow-sm">
+                    <ChevronRight size={10} strokeWidth={4} />
+                  </div>
+                  <span className="text-dark-text/75 text-sm md:text-base font-light">
+                    Spectacular beach and backwater views
+                  </span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <div className="w-5 h-5 rounded-full bg-ocean flex items-center justify-center text-white flex-shrink-0 mt-0.5 shadow-sm">
+                    <ChevronRight size={10} strokeWidth={4} />
+                  </div>
+                  <span className="text-dark-text/75 text-sm md:text-base font-light">
+                    Authentic Ayurvedic wellness treatments
+                  </span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <div className="w-5 h-5 rounded-full bg-ocean flex items-center justify-center text-white flex-shrink-0 mt-0.5 shadow-sm">
+                    <ChevronRight size={10} strokeWidth={4} />
+                  </div>
+                  <span className="text-dark-text/75 text-sm md:text-base font-light">
+                    Premium coastal dining at Joe's Cuisine
+                  </span>
+                </li>
+              </ul>
+
+              {/* CTA Button */}
+              <div className="pt-4">
+                <button
+                  onClick={() => {
+                    const bookingSection = document.getElementById('booking');
+                    if (bookingSection) {
+                      bookingSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="px-8 py-3.5 bg-ocean hover:bg-ocean-dark text-dark-text hover:text-white rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <span>Book Your Stay</span>
+                  <ArrowRight size={14} />
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* 7. Gallery / Accommodations Section */}
       <section id="gallery" className="pt-12 pb-8 md:pt-16 md:pb-10 bg-white border-y border-light-gray scroll-mt-12 overflow-hidden w-full">
 
