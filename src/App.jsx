@@ -618,18 +618,16 @@ function App() {
       <section id="hero" className="relative h-screen w-full overflow-hidden bg-white">
         {/* Background Video Container */}
         <div className="absolute inset-0 z-10 overflow-hidden">
-          <motion.video 
-            initial={{ scale: 1.15 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 5, ease: "easeOut" }}
-            style={{ y: heroParallax }}
-            src="/Also_back_side_is_the_backwate.mp4" 
+          <video 
             autoPlay 
             loop 
             muted 
             playsInline
-            className="w-full h-full object-cover select-none pointer-events-none filter contrast-[1.02] saturate-[1.03]"
-          />
+            preload="auto"
+            className="w-full h-full object-cover select-none pointer-events-none"
+          >
+            <source src="/c3b0830e-781b-45d9-89b0-00e9824299cf.mp4" type="video/mp4" />
+          </video>
           {/* Bottom black fade gradient to blend seamlessly into the next section */}
           <div className="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-black to-transparent pointer-events-none" />
         </div>
