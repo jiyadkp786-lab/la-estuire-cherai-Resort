@@ -1261,31 +1261,51 @@ function App() {
           <div 
             onMouseEnter={() => setIsCarouselHovered(true)}
             onMouseLeave={() => setIsCarouselHovered(false)}
-            className="relative bg-sand-light rounded-[32px] p-8 md:p-16 border border-sand/30 shadow-sm"
+            className="relative bg-sand-light rounded-[24px] md:rounded-[32px] p-5 md:p-16 border border-sand/30 shadow-sm overflow-hidden"
           >
-            <div className="absolute top-8 left-8 text-6xl font-serif text-ocean/15 select-none pointer-events-none">“</div>
+            <div className="absolute top-4 left-4 text-4xl md:top-8 md:left-8 md:text-6xl font-serif text-ocean/15 select-none pointer-events-none">“</div>
             
-            <div className="min-h-[220px] md:min-h-[160px] flex flex-col justify-between">
+            <motion.div 
+              drag={windowWidth < 1024 ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(event, info) => {
+                if (windowWidth >= 1024) return;
+                const swipeThreshold = 40;
+                const velocityThreshold = 200;
+                if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+                  setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+                } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+                  setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+                }
+              }}
+              className="min-h-[140px] md:min-h-[160px] flex flex-col justify-between touch-pan-y"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTestimonial}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.4 }}
+                  initial={{ opacity: 0, x: windowWidth < 1024 ? 40 : 0, y: windowWidth >= 1024 ? 15 : 0 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  exit={{ opacity: 0, x: windowWidth < 1024 ? -40 : 0, y: windowWidth >= 1024 ? -15 : 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                  <p className="font-sans text-base md:text-lg text-dark-text/80 italic font-normal leading-relaxed mb-8 pr-4">
+                  <p className="font-sans text-[13px] sm:text-base md:text-lg text-dark-text/80 italic font-normal leading-relaxed mb-4 md:mb-8 pr-4 line-clamp-3 md:line-clamp-none">
                     {testimonials[activeTestimonial].text}
                   </p>
                   
-                  <div className="flex items-center justify-between border-t border-sand/40 pt-6">
+                  <div className="flex items-center justify-between border-t border-sand/40 pt-4 md:pt-6">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-ocean text-dark-text flex items-center justify-center font-sans font-bold text-sm shadow-sm">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-ocean text-dark-text flex items-center justify-center font-sans font-bold text-xs md:text-sm shadow-sm flex-shrink-0">
                         {testimonials[activeTestimonial].initials}
                       </div>
                       <div>
-                        <h4 className="font-sans font-bold text-dark-text text-sm md:text-base">
-                          {testimonials[activeTestimonial].name}
+                        <h4 className="font-sans font-bold text-dark-text text-sm md:text-base flex items-center flex-wrap gap-x-2 gap-y-0.5">
+                          <span>{testimonials[activeTestimonial].name}</span>
+                          <span className="text-amber-500 flex gap-0.5 ml-1">
+                            {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
+                              <Star key={i} size={10} fill="currentColor" className="text-amber-500" />
+                            ))}
+                          </span>
                         </h4>
                         <span className="text-xs text-dark-text/40">{testimonials[activeTestimonial].location}</span>
                       </div>
@@ -1293,10 +1313,10 @@ function App() {
                   </div>
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </motion.div>
 
             {/* Slider Dots */}
-            <div className="flex justify-center gap-2 mt-8">
+            <div className="flex justify-center gap-2 mt-6 md:mt-8">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}
