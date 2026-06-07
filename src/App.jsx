@@ -626,7 +626,7 @@ function App() {
             preload="auto"
             className="w-full h-full object-cover select-none pointer-events-none"
           >
-            <source src="/c3b0830e-781b-45d9-89b0-00e9824299cf.mp4" type="video/mp4" />
+            <source src="/Keep_the_exact_same_video_comp.mp4" type="video/mp4" />
           </video>
           {/* Bottom black fade gradient to blend seamlessly into the next section */}
           <div className="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-black to-transparent pointer-events-none" />
