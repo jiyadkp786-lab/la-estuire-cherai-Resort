@@ -851,18 +851,7 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
             
-            {/* Left: Video Player */}
-            <div className="lg:col-span-7 aspect-video w-full relative rounded-[24px] md:rounded-[32px] overflow-hidden shadow-lg bg-light-gray">
-              <video 
-                src="/resort-ad-final.mp4" 
-                controls 
-                playsInline 
-                className="w-full h-full object-cover"
-                poster="/hero-resort.jpeg"
-              />
-            </div>
-
-            {/* Right: Content Details */}
+            {/* Left: Content Details */}
             <div className="lg:col-span-5 flex flex-col gap-6 text-left">
               {/* Eyebrow with Line */}
               <div className="flex items-center gap-3">
@@ -925,6 +914,17 @@ function App() {
                   <ArrowRight size={14} />
                 </button>
               </div>
+            </div>
+
+            {/* Right: Video Player */}
+            <div className="lg:col-span-7 aspect-video w-full relative rounded-[24px] md:rounded-[32px] overflow-hidden shadow-lg bg-light-gray">
+              <video 
+                src="/resort-ad-final.mp4" 
+                controls 
+                playsInline 
+                className="w-full h-full object-cover"
+                poster="/hero-resort.jpeg"
+              />
             </div>
 
           </div>
