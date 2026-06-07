@@ -716,7 +716,7 @@ function App() {
       </section>
 
       {/* FACILITIES Section */}
-      <section id="facilities" className="py-20 md:py-28 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray">
+      <section id="facilities" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
           <div className="flex items-center gap-3">
             <span className="w-12 h-[1px] bg-ocean" />
@@ -757,7 +757,7 @@ function App() {
       </section>
 
       {/* 6. About Section — Our Heritage */}
-      <section id="about" className="relative w-full scroll-mt-12 overflow-hidden flex flex-col items-center justify-center min-h-[80vh]">
+      <section id="about" className="relative w-full scroll-mt-12 overflow-hidden flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh]">
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -769,7 +769,7 @@ function App() {
         </div>
         
         {/* Content overlay — centred */}
-        <div className="relative z-10 flex items-center justify-center px-6 md:px-12 lg:px-20 py-20 w-full">
+        <div className="relative z-10 flex items-center justify-center px-6 md:px-12 lg:px-20 py-12 md:py-16 w-full">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -847,10 +847,10 @@ function App() {
       </section>
 
       {/* 7. Gallery / Accommodations Section */}
-      <section id="gallery" className="pt-20 pb-10 md:pb-12 bg-white border-y border-light-gray scroll-mt-12 overflow-hidden w-full">
+      <section id="gallery" className="pt-12 pb-8 md:pt-16 md:pb-10 bg-white border-y border-light-gray scroll-mt-12 overflow-hidden w-full">
 
         {/* Section Header */}
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mb-12">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mb-8 md:mb-10">
           <div className="text-center max-w-3xl mx-auto">
             {/* Removed Accommodations Subtitle */}
             <h2 className="font-display text-2xl md:text-[1.9rem] font-normal leading-snug tracking-wide text-dark-text mb-5 uppercase">
@@ -1030,7 +1030,7 @@ function App() {
       </section>
 
       {/* Dining Section */}
-      <section id="dining" className="py-20 md:py-28 px-6 md:px-12 bg-white scroll-mt-12">
+      <section id="dining" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
             
@@ -1096,11 +1096,11 @@ function App() {
       </section>
 
       {/* 3D Curved Gallery Section */}
-      <section id="portfolio" className="pt-24 pb-6 md:pb-24 px-6 md:px-12 bg-white overflow-hidden scroll-mt-12 w-full">
+      <section id="portfolio" className="pt-16 pb-6 md:pt-20 md:pb-16 px-6 md:px-12 bg-white overflow-hidden scroll-mt-12 w-full">
         <div className="max-w-7xl mx-auto text-center">
           
           {/* Header */}
-          <div className="max-w-3xl mx-auto mb-16 flex flex-col items-center">
+          <div className="max-w-3xl mx-auto mb-10 md:mb-12 flex flex-col items-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-dark-text mb-4">
               Curious What Else We've Created?
             </h2>
@@ -1240,7 +1240,7 @@ function App() {
 
 
       {/* 10. Testimonial Section */}
-      <section className="pt-6 md:pt-24 pb-24 px-6 md:px-12 bg-white overflow-hidden">
+      <section className="pt-6 md:pt-16 pb-16 px-6 md:px-12 bg-white overflow-hidden">
         <div className="max-w-5xl mx-auto relative px-4 md:px-12">
           
           <div className="text-center mb-16">
@@ -1350,7 +1350,7 @@ function App() {
 
 
       {/* 12. Booking Section */}
-      <section id="booking" className="py-24 px-6 md:px-12 bg-white scroll-mt-12">
+      <section id="booking" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12">
         <div className="max-w-4xl mx-auto bg-sand-light p-8 md:p-16 rounded-[32px] border border-sand/30 shadow-md">
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-ocean text-xs font-semibold tracking-[0.3em] uppercase mb-4 block">Secure Booking</span>
