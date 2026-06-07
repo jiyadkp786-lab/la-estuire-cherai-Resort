@@ -847,7 +847,7 @@ function App() {
       </section>
 
       {/* 7. Gallery / Accommodations Section */}
-      <section id="gallery" className="py-20 bg-white border-y border-light-gray scroll-mt-12 overflow-hidden w-full">
+      <section id="gallery" className="pt-20 pb-10 md:pb-12 bg-white border-y border-light-gray scroll-mt-12 overflow-hidden w-full">
 
         {/* Section Header */}
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mb-12">
@@ -874,91 +874,125 @@ function App() {
               onMouseEnter={() => setIsSliderHovered(true)}
               onMouseLeave={() => setIsSliderHovered(false)}
             >
-              {/* Slider Row */}
-              <div className="relative flex justify-center items-center gap-3 sm:gap-4 md:gap-6 w-full max-w-[1400px] mx-auto py-4 px-2 select-none">
-                {/* Left (Previous) Slide */}
-                <motion.div 
-                  layout
-                  key={accommodations[prevIdx].id}
+              <div className="relative w-full max-w-[1400px] mx-auto px-2">
+                {/* Left Arrow Button */}
+                <button
                   onClick={handlePrevSanctuary}
-                  className="relative w-[15vw] sm:w-[18vw] md:w-[22%] h-[240px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-xl overflow-hidden cursor-pointer opacity-50 hover:opacity-75 transition-opacity duration-300 flex-shrink-0 group"
+                  className="absolute left-2 sm:left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-dark-text/15 hover:border-dark-text/40 bg-white/90 backdrop-blur-sm text-dark-text hover:bg-dark-text hover:text-white flex items-center justify-center transition-all duration-300 z-30 cursor-pointer shadow-md"
+                  aria-label="Previous room"
                 >
-                  <img 
-                    src={accommodations[prevIdx].image} 
-                    alt={accommodations[prevIdx].title} 
-                    className="w-full h-full object-cover pointer-events-none"
-                  />
-                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-                  
-                  {/* Book Now Button Overlay (Hover only on desktop) */}
-                  <div className="absolute inset-0 hidden md:flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSelectRoom(accommodations[prevIdx].title);
-                      }}
-                      className="px-5 py-2.5 bg-white/95 backdrop-blur-sm text-dark-text hover:bg-ocean hover:text-white rounded-full text-[9px] font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer pointer-events-auto"
-                    >
-                      Book Now
-                    </button>
-                  </div>
+                  <ChevronLeft size={18} />
+                </button>
+
+                {/* Slider Row */}
+                <motion.div 
+                  drag={windowWidth < 1024 ? "x" : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(event, info) => {
+                    if (windowWidth >= 1024) return;
+                    const swipeThreshold = 50;
+                    if (info.offset.x < -swipeThreshold) {
+                      handleNextSanctuary();
+                    } else if (info.offset.x > swipeThreshold) {
+                      handlePrevSanctuary();
+                    }
+                  }}
+                  className="relative flex justify-center items-center gap-3 sm:gap-4 md:gap-6 w-full max-w-[1400px] mx-auto py-4 px-2 select-none touch-pan-y no-scrollbar"
+                >
+                  {/* Left (Previous) Slide */}
+                  <motion.div 
+                    layout
+                    key={accommodations[prevIdx].id}
+                    onClick={handlePrevSanctuary}
+                    className="relative w-[15vw] sm:w-[18vw] md:w-[22%] h-[240px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-xl overflow-hidden cursor-pointer opacity-50 hover:opacity-75 transition-opacity duration-300 flex-shrink-0 group"
+                  >
+                    <img 
+                      src={accommodations[prevIdx].image} 
+                      alt={accommodations[prevIdx].title} 
+                      className="w-full h-full object-cover pointer-events-none"
+                    />
+                    <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+                    
+                    {/* Book Now Button Overlay (Hover only on desktop) */}
+                    <div className="absolute inset-0 hidden md:flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectRoom(accommodations[prevIdx].title);
+                        }}
+                        className="px-5 py-2.5 bg-white/95 backdrop-blur-sm text-dark-text hover:bg-ocean hover:text-white rounded-full text-[9px] font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer pointer-events-auto"
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </motion.div>
+
+                  {/* Center (Active) Slide */}
+                  <motion.div 
+                    layout
+                    key={accommodations[activeIdx].id}
+                    className="relative w-[60vw] sm:w-[54vw] md:w-[50%] h-[240px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-xl overflow-hidden shadow-2xl flex-shrink-0 group"
+                  >
+                    <img 
+                      src={accommodations[activeIdx].image} 
+                      alt={accommodations[activeIdx].title} 
+                      className="w-full h-full object-cover pointer-events-none"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                    
+                    {/* Book Now Button Overlay (Always visible at the bottom) */}
+                    <div className="absolute inset-0 flex items-end justify-center pb-6 md:pb-8">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectRoom(accommodations[activeIdx].title);
+                        }}
+                        className="px-5 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-dark-text hover:bg-ocean hover:text-white rounded-full text-[9px] md:text-[10px] font-bold tracking-widest uppercase shadow-lg transition-all duration-300 cursor-pointer pointer-events-auto flex items-center gap-1.5"
+                      >
+                        <span>Book Now</span>
+                        <ArrowRight size={12} />
+                      </button>
+                    </div>
+                  </motion.div>
+
+                  {/* Right (Next) Slide */}
+                  <motion.div 
+                    layout
+                    key={accommodations[nextIdx].id}
+                    onClick={handleNextSanctuary}
+                    className="relative w-[15vw] sm:w-[18vw] md:w-[22%] h-[240px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-xl overflow-hidden cursor-pointer opacity-50 hover:opacity-75 transition-opacity duration-300 flex-shrink-0 group"
+                  >
+                    <img 
+                      src={accommodations[nextIdx].image} 
+                      alt={accommodations[nextIdx].title} 
+                      className="w-full h-full object-cover pointer-events-none"
+                    />
+                    <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+                    
+                    {/* Book Now Button Overlay (Hover only on desktop) */}
+                    <div className="absolute inset-0 hidden md:flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectRoom(accommodations[nextIdx].title);
+                        }}
+                        className="px-5 py-2.5 bg-white/95 backdrop-blur-sm text-dark-text hover:bg-ocean hover:text-white rounded-full text-[9px] font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer pointer-events-auto"
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </motion.div>
                 </motion.div>
 
-                {/* Center (Active) Slide */}
-                <motion.div 
-                  layout
-                  key={accommodations[activeIdx].id}
-                  className="relative w-[60vw] sm:w-[54vw] md:w-[50%] h-[240px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-xl overflow-hidden shadow-2xl flex-shrink-0 group"
-                >
-                  <img 
-                    src={accommodations[activeIdx].image} 
-                    alt={accommodations[activeIdx].title} 
-                    className="w-full h-full object-cover pointer-events-none"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-                  
-                  {/* Book Now Button Overlay (Always visible at the bottom) */}
-                  <div className="absolute inset-0 flex items-end justify-center pb-6 md:pb-8">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSelectRoom(accommodations[activeIdx].title);
-                      }}
-                      className="px-5 py-2.5 md:px-6 md:py-3 bg-white/95 backdrop-blur-sm text-dark-text hover:bg-ocean hover:text-white rounded-full text-[9px] md:text-[10px] font-bold tracking-widest uppercase shadow-lg transition-all duration-300 cursor-pointer pointer-events-auto flex items-center gap-1.5"
-                    >
-                      <span>Book Now</span>
-                      <ArrowRight size={12} />
-                    </button>
-                  </div>
-                </motion.div>
-
-                {/* Right (Next) Slide */}
-                <motion.div 
-                  layout
-                  key={accommodations[nextIdx].id}
+                {/* Right Arrow Button */}
+                <button
                   onClick={handleNextSanctuary}
-                  className="relative w-[15vw] sm:w-[18vw] md:w-[22%] h-[240px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-xl overflow-hidden cursor-pointer opacity-50 hover:opacity-75 transition-opacity duration-300 flex-shrink-0 group"
+                  className="absolute right-2 sm:right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-dark-text/15 hover:border-dark-text/40 bg-white/90 backdrop-blur-sm text-dark-text hover:bg-dark-text hover:text-white flex items-center justify-center transition-all duration-300 z-30 cursor-pointer shadow-md"
+                  aria-label="Next room"
                 >
-                  <img 
-                    src={accommodations[nextIdx].image} 
-                    alt={accommodations[nextIdx].title} 
-                    className="w-full h-full object-cover pointer-events-none"
-                  />
-                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-                  
-                  {/* Book Now Button Overlay (Hover only on desktop) */}
-                  <div className="absolute inset-0 hidden md:flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSelectRoom(accommodations[nextIdx].title);
-                      }}
-                      className="px-5 py-2.5 bg-white/95 backdrop-blur-sm text-dark-text hover:bg-ocean hover:text-white rounded-full text-[9px] font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer pointer-events-auto"
-                    >
-                      Book Now
-                    </button>
-                  </div>
-                </motion.div>
+                  <ChevronRight size={18} />
+                </button>
               </div>
 
               {/* Active Room Details Area */}
@@ -992,41 +1026,6 @@ function App() {
             </div>
           );
         })()}
-
-        {/* Manual controls — dots + prev/next arrows */}
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mt-10">
-          <div className="flex items-center justify-center gap-6">
-            <button
-              onClick={handlePrevSanctuary}
-              className="w-10 h-10 rounded-full border border-dark-text/15 hover:border-dark-text/50 hover:bg-dark-text hover:text-white flex items-center justify-center text-dark-text transition-all duration-300 cursor-pointer"
-              aria-label="Previous room"
-            >
-              <ChevronLeft size={16} />
-            </button>
-
-            {/* Dot indicators */}
-            <div className="flex gap-2">
-              {accommodations.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveSanctuaryIdx(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeSanctuaryIdx === idx ? 'w-6 bg-ocean' : 'w-2 bg-dark-text/20 hover:bg-dark-text/40'
-                  }`}
-                  aria-label={`Room ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={handleNextSanctuary}
-              className="w-10 h-10 rounded-full border border-dark-text/15 hover:border-dark-text/50 hover:bg-dark-text hover:text-white flex items-center justify-center text-dark-text transition-all duration-300 cursor-pointer"
-              aria-label="Next room"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        </div>
 
       </section>
 
