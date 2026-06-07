@@ -1096,7 +1096,7 @@ function App() {
       </section>
 
       {/* 3D Curved Gallery Section */}
-      <section id="portfolio" className="py-24 px-6 md:px-12 bg-white overflow-hidden scroll-mt-12 w-full">
+      <section id="portfolio" className="pt-24 pb-6 md:pb-24 px-6 md:px-12 bg-white overflow-hidden scroll-mt-12 w-full">
         <div className="max-w-7xl mx-auto text-center">
           
           {/* Header */}
@@ -1139,8 +1139,21 @@ function App() {
             return (
               <div className="relative w-full h-[260px] sm:h-[340px] md:h-[480px] flex items-center justify-center overflow-visible select-none">
                 {/* 3D Stage Container */}
-                <div 
-                  className="relative flex items-center justify-center w-full h-full"
+                <motion.div 
+                  drag={windowWidth < 1024 ? "x" : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(event, info) => {
+                    if (windowWidth >= 1024) return;
+                    const swipeThreshold = 40;
+                    const velocityThreshold = 200;
+                    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+                      setActiveGalleryIdx((prev) => (prev + 1) % galleryItems.length);
+                    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+                      setActiveGalleryIdx((prev) => (prev - 1 + galleryItems.length) % galleryItems.length);
+                    }
+                  }}
+                  className="relative flex items-center justify-center w-full h-full touch-pan-y"
                   style={{ perspective: 1200, transformStyle: "preserve-3d" }}
                 >
                   {galleryItems.map((item, idx) => {
@@ -1178,10 +1191,11 @@ function App() {
                     return (
                       <motion.div
                         key={item.id}
-                        drag="x"
+                        drag={windowWidth >= 1024 ? "x" : false}
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={0.2}
                         onDragEnd={(event, info) => {
+                          if (windowWidth < 1024) return;
                           const swipeThreshold = 50;
                           if (info.offset.x < -swipeThreshold) {
                             setActiveGalleryIdx((prev) => (prev + 1) % galleryItems.length);
@@ -1215,7 +1229,7 @@ function App() {
                       </motion.div>
                     );
                   })}
-                </div>
+                </motion.div>
               </div>
             );
           })()}
@@ -1226,7 +1240,7 @@ function App() {
 
 
       {/* 10. Testimonial Section */}
-      <section className="py-24 px-6 md:px-12 bg-white overflow-hidden">
+      <section className="pt-6 md:pt-24 pb-24 px-6 md:px-12 bg-white overflow-hidden">
         <div className="max-w-5xl mx-auto relative px-4 md:px-12">
           
           <div className="text-center mb-16">
