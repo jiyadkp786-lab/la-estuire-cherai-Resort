@@ -27,10 +27,27 @@ import {
 // Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
+// Import static media assets from src/assets
+import logoImg from './assets/logo.jpeg';
+import pool1Img from './assets/pool-1.jpeg';
+import pool2Img from './assets/pool-2.jpeg';
+import pool3Img from './assets/pool-3.jpeg';
+import pool4Img from './assets/pool-4.jpeg';
+import heroResortImg from './assets/hero-resort.jpeg';
+import heritage2Img from './assets/heritage-2.jpeg';
+import heritage1Img from './assets/heritage-1.jpeg';
+import lakeViewDeluxeImg from './assets/lake-view-deluxe.jpeg';
+import superDeluxeImg from './assets/super-deluxe.jpeg';
+import deluxeImg from './assets/deluxe.jpeg';
+import deluxeDoubleImg from './assets/deluxe-double.jpeg';
+import chatGptBgImg from './assets/heritage-bg.png';
+import heroSectionVideo from './assets/hero_section_video.mp4';
+import addVideo from './assets/add_video.mp4';
+
 // Custom Logo Component
 const ResortLogo = ({ className = "h-10 w-10" }) => (
   <img 
-    src="/logo.jpeg" 
+    src={logoImg} 
     alt="La Estuaire Logo" 
     className={`${className} object-contain rounded-full`}
   />
@@ -111,7 +128,7 @@ function App() {
 
   // Dining Slideshow state
   const [activeDiningImgIdx, setActiveDiningImgIdx] = useState(0);
-  const diningImages = ['/pool-1.jpeg', '/pool-2.jpeg', '/pool-3.jpeg', '/pool-4.jpeg'];
+  const diningImages = [pool1Img, pool2Img, pool3Img, pool4Img];
 
   // Mouse Position for glow effect
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -143,12 +160,12 @@ function App() {
   const navHamburgerClass = isScrolled ? 'text-dark-text hover:text-ocean' : 'text-white hover:text-[#B8E0E0]';
 
   const galleryItems = [
-    { id: "beach", num: "01", title: "Arabian Sea Waves", image: "/hero-resort.jpeg", desc: "Enjoy stunning, continuous beach views directly from the resort." },
-    { id: "spa", num: "02", title: "Ayurvedic Spa Sanctuary", image: "/heritage-2.jpeg", desc: "Rejuvenate with traditional treatments by certified Ayurvedic healers." },
-    { id: "dining", num: "03", title: "Joe's Cuisine Dining", image: "/heritage-1.jpeg", desc: "Savor gourmet coastal curries and fresh seafood at our pool-side restaurant." },
-    { id: "pool", num: "04", title: "Infinity Pool Sunset", image: "/pool-1.jpeg", desc: "Witness breathtaking sunsets as the infinity pool merges with the sea." },
-    { id: "lake", num: "05", title: "Silent Kerala Backwaters", image: "/lake-view-deluxe.jpeg", desc: "Experience the calm backwaters of Cherai island with kayaking and canoeing." },
-    { id: "suites", num: "06", title: "Suites & Cottages", image: "/super-deluxe.jpeg", desc: "Unwind in minimalist, modern spaces designed with local wood and organic textures." }
+    { id: "beach", num: "01", title: "Arabian Sea Waves", image: heroResortImg, desc: "Enjoy stunning, continuous beach views directly from the resort." },
+    { id: "spa", num: "02", title: "Ayurvedic Spa Sanctuary", image: heritage2Img, desc: "Rejuvenate with traditional treatments by certified Ayurvedic healers." },
+    { id: "dining", num: "03", title: "Joe's Cuisine Dining", image: heritage1Img, desc: "Savor gourmet coastal curries and fresh seafood at our pool-side restaurant." },
+    { id: "pool", num: "04", title: "Infinity Pool Sunset", image: pool1Img, desc: "Witness breathtaking sunsets as the infinity pool merges with the sea." },
+    { id: "lake", num: "05", title: "Silent Kerala Backwaters", image: lakeViewDeluxeImg, desc: "Experience the calm backwaters of Cherai island with kayaking and canoeing." },
+    { id: "suites", num: "06", title: "Suites & Cottages", image: superDeluxeImg, desc: "Unwind in minimalist, modern spaces designed with local wood and organic textures." }
   ];
 
   // Scroll Progress calculations for parallax
@@ -160,7 +177,7 @@ function App() {
     {
       id: "super-deluxe",
       title: "Super Deluxe Room",
-      image: "/super-deluxe.jpeg",
+      image: superDeluxeImg,
       size: "55 sq m",
       capacity: "Up to 2 Guests",
       price: "₹12,000",
@@ -170,7 +187,7 @@ function App() {
     {
       id: "lake-view-deluxe",
       title: "Lake View Premium Deluxe",
-      image: "/lake-view-deluxe.jpeg",
+      image: lakeViewDeluxeImg,
       size: "50 sq m",
       capacity: "Up to 2 Guests",
       price: "₹10,000",
@@ -180,7 +197,7 @@ function App() {
     {
       id: "deluxe",
       title: "Deluxe Room",
-      image: "/deluxe.jpeg",
+      image: deluxeImg,
       size: "40 sq m",
       capacity: "Up to 2 Guests",
       price: "₹8,000",
@@ -190,7 +207,7 @@ function App() {
     {
       id: "deluxe-double",
       title: "Deluxe Double Sharing Room",
-      image: "/deluxe-double.jpeg",
+      image: deluxeDoubleImg,
       size: "45 sq m",
       capacity: "Up to 2 Guests",
       price: "₹7,500",
@@ -618,15 +635,25 @@ function App() {
       <section id="hero" className="relative h-screen w-full overflow-hidden bg-white">
         {/* Background Video Container */}
         <div className="absolute inset-0 z-10 overflow-hidden">
-          <div className="youtube-bg-container">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/PWQFHY4oBH4?autoplay=1&mute=1&loop=1&playlist=PWQFHY4oBH4&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1&iv_load_policy=3&fs=0&disablekb=1&vq=hd1080"
-              className="youtube-bg-iframe"
-              title="La Estuaire Cherai Hero Background"
-              allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+          <video
+            ref={(el) => {
+              if (el) {
+                el.addEventListener('timeupdate', () => {
+                  if (el.currentTime >= 8) {
+                    el.currentTime = 8;
+                    el.pause();
+                  }
+                });
+              }
+            }}
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover select-none pointer-events-none"
+          >
+            <source src={heroSectionVideo} type="video/mp4" />
+          </video>
           {/* Bottom black fade gradient to blend seamlessly into the next section */}
           <div className="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-black to-transparent pointer-events-none" />
           {/* Resort logo overlay covering the watermark in bottom-right corner */}
@@ -766,7 +793,7 @@ function App() {
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/ChatGPT Image Jun 6, 2026, 07_34_50 PM.png" 
+            src={chatGptBgImg} 
             alt="La Estuaire heritage background" 
             className="w-full h-full object-cover"
           />
@@ -928,9 +955,9 @@ function App() {
                 playsInline 
                 preload="metadata"
                 className="w-full h-full object-cover"
-                poster="/hero-resort.jpeg"
+                poster={heroResortImg}
               >
-                <source src="/resort-ad-final.mp4" type="video/mp4" />
+                <source src={addVideo} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
