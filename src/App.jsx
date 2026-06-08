@@ -925,12 +925,15 @@ function App() {
             {/* Right: Video Player */}
             <div className="lg:col-span-7 aspect-video w-full relative rounded-[24px] md:rounded-[32px] overflow-hidden shadow-lg bg-light-gray">
               <video 
-                src="/resort-ad-final.mp4" 
                 controls 
                 playsInline 
+                preload="metadata"
                 className="w-full h-full object-cover"
                 poster="/hero-resort.jpeg"
-              />
+              >
+                <source src="/resort-ad-final.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
 
           </div>
