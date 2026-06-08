@@ -618,16 +618,15 @@ function App() {
       <section id="hero" className="relative h-screen w-full overflow-hidden bg-white">
         {/* Background Video Container */}
         <div className="absolute inset-0 z-10 overflow-hidden">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover select-none pointer-events-none"
-          >
-            <source src="/Keep_the_exact_same_video_comp.mp4" type="video/mp4" />
-          </video>
+          <div className="youtube-bg-container">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/PWQFHY4oBH4?autoplay=1&mute=1&loop=1&playlist=PWQFHY4oBH4&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1&iv_load_policy=3&fs=0&disablekb=1&vq=hd1080"
+              className="youtube-bg-iframe"
+              title="La Estuaire Cherai Hero Background"
+              allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
           {/* Bottom black fade gradient to blend seamlessly into the next section */}
           <div className="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-black to-transparent pointer-events-none" />
           {/* Resort logo overlay covering the watermark in bottom-right corner */}
