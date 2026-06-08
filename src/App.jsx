@@ -149,15 +149,17 @@ function App() {
   }, []);
 
   // Navigation dynamic classes
+  // NOTE: Hero is now a split white/video layout — nav must always use dark text
   const navBgClass = isScrolled 
     ? 'top-4 py-3 bg-white/85 backdrop-blur-lg border border-sand/40 shadow-lg w-[85%] max-w-6xl rounded-[30px]' 
-    : 'top-0 py-6 bg-transparent border-transparent shadow-none w-full px-6 md:px-12 rounded-none';
-  const navTextClass = isScrolled ? 'text-dark-text/85' : 'text-white/90';
-  const navTextHoverClass = isScrolled ? 'hover:text-ocean' : 'hover:text-[#B8E0E0]';
-  const navUnderlineClass = isScrolled ? 'bg-ocean' : 'bg-[#B8E0E0]';
-  const navBrandClass = isScrolled ? 'text-dark-text' : 'text-white';
-  const navSubClass = isScrolled ? 'text-ocean' : 'text-[#B8E0E0]';
-  const navHamburgerClass = isScrolled ? 'text-dark-text hover:text-ocean' : 'text-white hover:text-[#B8E0E0]';
+    : 'top-0 py-6 bg-white/60 backdrop-blur-sm border-transparent shadow-none w-full px-6 md:px-12 rounded-none';
+  const navTextClass = isScrolled ? 'text-dark-text/85' : 'text-dark-text/80';
+  const navTextHoverClass = isScrolled ? 'hover:text-ocean' : 'hover:text-ocean';
+  const navUnderlineClass = isScrolled ? 'bg-ocean' : 'bg-ocean';
+  const navBrandClass = isScrolled ? 'text-dark-text' : 'text-dark-text';
+  const navSubClass = isScrolled ? 'text-ocean' : 'text-ocean';
+  const navHamburgerClass = isScrolled ? 'text-dark-text hover:text-ocean' : 'text-dark-text hover:text-ocean';
+
 
   const galleryItems = [
     { id: "beach", num: "01", title: "Arabian Sea Waves", image: heroResortImg, desc: "Enjoy stunning, continuous beach views directly from the resort." },
@@ -631,40 +633,170 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* 5. Hero Section */}
-      <section id="hero" className="relative h-screen w-full overflow-hidden bg-white">
-        {/* Background Video Container */}
-        <div className="absolute inset-0 z-10 overflow-hidden">
+      {/* 5. Hero Section — Fully Responsive Premium Split Layout */}
+      {/*
+        Mobile  (<md):  flex-col — video on top (45vh), content below
+        Tablet  (md):   flex-col — video on top (50vh), content below
+        Desktop (lg+):  flex-row — content left 42%, video right 58%
+      */}
+      <section
+        id="hero"
+        className="relative w-full bg-white flex flex-col lg:flex-row lg:h-screen lg:overflow-hidden lg:items-stretch"
+      >
+        {/* ══════════════════════════════════════════
+            MOBILE / TABLET — Video renders FIRST (on top)
+            Hidden on lg+ because desktop uses absolute positioning
+            ══════════════════════════════════════════ */}
+        <div
+          className="block lg:hidden w-full flex-shrink-0 relative overflow-hidden"
+          style={{ height: '45vh' }}
+        >
           <video
-            ref={(el) => {
-              if (el) {
-                el.addEventListener('timeupdate', () => {
-                  if (el.currentTime >= 8) {
-                    el.currentTime = 8;
-                    el.pause();
-                  }
-                });
-              }
-            }}
             autoPlay
             muted
+            loop
             playsInline
             preload="auto"
-            className="w-full h-full object-cover select-none pointer-events-none"
+            style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
           >
             <source src={heroSectionVideo} type="video/mp4" />
           </video>
-          {/* Bottom black fade gradient to blend seamlessly into the next section */}
-          <div className="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-black to-transparent pointer-events-none" />
-          {/* Resort logo overlay covering the watermark in bottom-right corner */}
-          <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3 bg-black/45 backdrop-blur-md px-5 py-3.5 rounded-full border border-white/10 shadow-lg select-none pointer-events-none">
-            <ResortLogo className="h-11 w-11" />
-            <div className="flex flex-col leading-none text-left">
-              <span className="font-display text-[12px] font-light tracking-[0.2em] text-white">LA ESTUAIRE</span>
-              <span className="text-[8.5px] tracking-[0.3em] font-medium text-[#B8E0E0] mt-0.5">CHERAI</span>
+          {/* Subtle bottom fade on mobile video */}
+          <div
+            className="absolute inset-x-0 bottom-0 pointer-events-none"
+            style={{ height: '40%', background: 'linear-gradient(to top, rgba(255,255,255,0.9), transparent)' }}
+          />
+        </div>
+
+        {/* ══════════════════════════════════════════
+            LEFT CONTENT PANEL
+            Mobile: full width below the video
+            Desktop: 42% width, flex-col justify-center
+            ══════════════════════════════════════════ */}
+        <div
+          className="relative flex flex-col justify-center bg-white px-6 py-10 sm:px-10 sm:py-12 md:px-14 md:py-16 lg:py-0 lg:px-16 xl:px-24 w-full lg:w-[42%] lg:flex-shrink-0 lg:z-20"
+        >
+          {/* Eyebrow label */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7, ease: 'easeOut' }}
+            className="text-ocean text-[10px] font-bold tracking-[0.28em] uppercase mb-4 lg:mb-5"
+          >
+            Explore the Beauty of Cherai
+          </motion.p>
+
+          {/* Main headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-[2.2rem] sm:text-[2.8rem] md:text-[3.2rem] lg:text-[3.5rem] xl:text-[4rem] leading-[1.08] tracking-tight text-dark-text"
+          >
+            Your Journey,
+            <br />
+            Our{' '}
+            <span className="text-ocean italic">Passion</span>
+          </motion.h1>
+
+          {/* Gold divider accent */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ delay: 0.9, duration: 0.6, ease: 'easeOut' }}
+            className="flex items-center gap-3 my-5 lg:my-6 origin-left"
+          >
+            <span className="h-[1px] w-14 bg-gradient-to-r from-[#C9A96E] to-[#E8DCCB]" />
+            <span className="text-[#C9A96E]" style={{ fontSize: '10px' }}>✦</span>
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.8, ease: 'easeOut' }}
+            className="text-dark-text/65 text-[0.88rem] sm:text-[0.95rem] font-light leading-relaxed max-w-sm mb-8 lg:mb-10"
+          >
+            Discover a serene blend of luxury, nature, and comfort.
+            Unwind in the lap of Cherai's pristine beaches and
+            tranquil backwaters.
+          </motion.p>
+
+          {/* CTA Button */}
+          <motion.a
+            href="https://wa.me/918943573519?text=Hello%2C%20I%20would%20like%20to%20book%20a%20stay%20at%20La%20Estuaire%20Cherai."
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.15, duration: 0.7, ease: 'easeOut' }}
+            whileHover={{ scale: 1.04, boxShadow: '0 12px 40px rgba(180,117,250,0.35)' }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-3 self-start px-7 py-3.5 lg:px-8 lg:py-4 bg-ocean hover:bg-ocean-dark text-white rounded-full font-bold text-[11px] tracking-[0.22em] uppercase transition-colors duration-300 shadow-lg cursor-pointer"
+          >
+            Book Your Stay
+            <ArrowRight size={15} strokeWidth={2.5} />
+          </motion.a>
+        </div>
+
+        {/* ══════════════════════════════════════════
+            DESKTOP-ONLY VIDEO (absolute, right 58%)
+            Hidden on mobile/tablet — those use the stacked video above
+            ══════════════════════════════════════════ */}
+        <div
+          className="hidden lg:flex absolute top-0 right-0 h-full z-10 items-center"
+          style={{ width: '62%', paddingRight: '2rem', paddingTop: '1.5rem', paddingBottom: '1.5rem' }}
+        >
+          <div
+            className="relative w-full h-full overflow-hidden shadow-2xl"
+            style={{ borderRadius: '28px' }}
+          >
+            <video
+              ref={(el) => {
+                if (el) {
+                  el.addEventListener('timeupdate', () => {
+                    if (el.currentTime >= 8) {
+                      el.currentTime = 8;
+                      el.pause();
+                    }
+                  });
+                }
+              }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
+            >
+              <source src={heroSectionVideo} type="video/mp4" />
+            </video>
+
+            {/* Bottom fade on video */}
+            <div
+              className="absolute inset-x-0 bottom-0 pointer-events-none"
+              style={{ height: '30%', background: 'linear-gradient(to top, rgba(0,0,0,0.45), transparent)' }}
+            />
+
+            {/* Resort logo overlay — bottom right of video */}
+            <div className="absolute bottom-6 right-6 z-20 flex items-center gap-2.5 bg-black/40 backdrop-blur-md px-4 py-3 rounded-full border border-white/10 shadow-lg select-none pointer-events-none">
+              <ResortLogo className="h-9 w-9" />
+              <div className="flex flex-col leading-none text-left">
+                <span className="font-display text-[11px] font-light tracking-[0.2em] text-white">LA ESTUAIRE</span>
+                <span className="text-[7.5px] tracking-[0.3em] font-medium text-[#B8E0E0] mt-0.5">CHERAI</span>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* ── DESKTOP ONLY: White gradient fade left-to-right ── */}
+        <div
+          className="hidden lg:block absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 15,
+            background: 'linear-gradient(to right, #ffffff 0%, #ffffff 34%, rgba(255,255,255,0.92) 44%, rgba(255,255,255,0.72) 54%, rgba(255,255,255,0.38) 65%, rgba(255,255,255,0.12) 76%, rgba(255,255,255,0.03) 86%, transparent 95%)',
+          }}
+        />
       </section>
 
       {/* 5b. Booking Bar Section — between Hero and About */}

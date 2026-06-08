@@ -51,6 +51,12 @@ video {
   image-rendering: crisp-edges;
 }
 
+/* z-index utility for hero gradient overlay */
+.z-15 {
+  z-index: 15;
+}
+
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
