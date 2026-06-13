@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    { "source": "/resort-near-cherai-beach", "destination": "/resort-near-cherai-beach.html" },
+    { "source": "/pool-resort-in-cherai", "destination": "/pool-resort-in-cherai.html" },
+    { "source": "/event-hall-in-cherai", "destination": "/event-hall-in-cherai.html" },
+    { "source": "/birthday-party-hall-in-cherai", "destination": "/birthday-party-hall-in-cherai.html" },
+    { "source": "/south-indian-restaurant-in-cherai", "destination": "/south-indian-restaurant-in-cherai.html" },
+    { "source": "/resort-near-kuzhippally-beach", "destination": "/resort-near-kuzhippally-beach.html" },
+    { "source": "/weekend-getaway-near-kochi", "destination": "/weekend-getaway-near-kochi.html" }
+  ]
+}

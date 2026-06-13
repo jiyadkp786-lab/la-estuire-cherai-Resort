@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or sensitive paths (none currently, placeholder)
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://la-estuire-cherai-resort-gafa.vercel.app/sitemap.xml
+
+# Crawl-delay (optional, be polite to bots)
+Crawl-delay: 1
