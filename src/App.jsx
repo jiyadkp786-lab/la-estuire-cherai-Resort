@@ -302,7 +302,7 @@ function App() {
       image: "/super-deluxe.jpeg",
       size: "55 sq m",
       capacity: "Up to 2 Guests",
-      price: "₹12,000",
+      price: "",
       description: "Our most spacious room, perfect for couples or solo travelers seeking the finest comfort in Cherai. Enjoy premium furnishings, a king bed, high speed WiFi, and a relaxing ambiance just minutes from Cherai Beach and the backwaters of Vypin Island.",
       tags: ["King Bed", "High Speed WiFi", "Scenic Surroundings"]
     },
@@ -312,7 +312,7 @@ function App() {
       image: "/lake-view-deluxe.jpeg",
       size: "50 sq m",
       capacity: "Up to 2 Guests",
-      price: "₹10,000",
+      price: "",
       description: "Wake up to breathtaking backwater views from your window. Our Lake View Deluxe Room is ideal for couples and nature lovers who want to experience Kerala's iconic backwater landscapes from the comfort of a well-appointed room in Cherai.",
       tags: ["Backwater View", "Couple Friendly", "Morning Serenity"]
     },
@@ -322,7 +322,7 @@ function App() {
       image: "/deluxe.jpeg",
       size: "40 sq m",
       capacity: "Up to 2 Guests",
-      price: "₹8,000",
+      price: "",
       description: "A beautifully designed room offering modern comforts in a peaceful Cherai setting. Ideal for weekend getaways from Kochi, family trips, or couple stays. Enjoy garden views, rain shower, and easy access to our swimming pool and resort facilities.",
       tags: ["Garden View", "Rain Shower", "Pool Access"]
     },
@@ -332,7 +332,7 @@ function App() {
       image: "/deluxe-double.jpeg",
       size: "45 sq m",
       capacity: "Up to 2 Guests",
-      price: "₹7,500",
+      price: "",
       description: "Our most value friendly option, a cozy well-furnished room perfect for friends, siblings, or budget-conscious families visiting Cherai. Twin beds, thoughtful amenities, and access to all resort facilities including the swimming pool and dining at Joe's Cuisine.",
       tags: ["Twin Beds", "Family Friendly", "Best Value"]
     }
@@ -387,7 +387,7 @@ function App() {
     }
   ];
 
-  // FAQ data " SEO-focused
+  // FAQ data - SEO-focused
   const faqs = [
     {
       question: "Which is the best resort in Cherai near the beach?",
@@ -407,7 +407,7 @@ function App() {
     },
     {
       question: "Can I celebrate a birthday party at La Estuaire Cherai?",
-      answer: "Absolutely! La Estuaire Cherai is one of the popular birthday party and celebration venues in Cherai. Our event hall and outdoor spaces can be arranged for birthday celebrations with personalized dÃ©cor, special menus from Joe's Cuisine, and a warm, festive atmosphere. Contact us to plan your birthday event."
+      answer: "Absolutely! La Estuaire Cherai is one of the popular birthday party and celebration venues in Cherai. Our event hall and outdoor spaces can be arranged for birthday celebrations with personalized decor, special menus from Joe's Cuisine, and a warm, festive atmosphere. Contact us to plan your birthday event."
     },
     {
       question: "Is La Estuaire Cherai family friendly?",
@@ -548,7 +548,7 @@ function App() {
     setActiveSanctuaryIdx((prev) => (prev - 1 + accommodations.length) % accommodations.length);
   };
 
-  // Auto-slide for room carousel " pauses on hover
+  // Auto-slide for room carousel - pauses on hover
   useEffect(() => {
     if (isSliderHovered) return;
     const interval = setInterval(() => {
@@ -806,7 +806,7 @@ function App() {
               <span className="text-[8.5px] tracking-[0.3em] font-medium text-[#B8E0E0] mt-0.5">CHERAI</span>
             </div>
           </div>
-          {/* SEO H1 " visually hidden, present for search engines */}
+          {/* SEO H1 - visually hidden, present for search engines */}
           <div className="absolute inset-0 flex items-end justify-start px-8 md:px-16 pb-32 sm:pb-24 md:pb-20 z-20 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -826,7 +826,7 @@ function App() {
         </div>
       </section>
 
-      {/* 5b. Booking Bar Section " between Hero and About */}
+      {/* 5b. Booking Bar Section - between Hero and About */}
       <section className="relative z-20 w-full bg-white py-8 px-6 border-b border-light-gray shadow-sm" aria-label="Quick Booking">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -923,7 +923,7 @@ function App() {
             La Estuaire Cherai offers a complete resort experience: swimming pool, kayaking, event hall, authentic Kerala dining, backwater views, and warm personalized hospitality, all just 500 metres from Cherai Beach on Vypin Island.
           </p>
 
-          {/* List of facilities " centered grid */}
+          {/* List of facilities - centered grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full text-left mt-2">
             {amenities.map((facility, index) => (
               <div key={index} className="flex gap-3 items-start bg-sand-light p-4 rounded-2xl border border-ocean/5 shadow-sm hover:shadow-md transition-all duration-300">
@@ -949,7 +949,7 @@ function App() {
         </div>
       </section>
 
-      {/* 6. About Section " Our Heritage */}
+      {/* 6. About Section - Our Heritage */}
       <section id="about" className="relative w-full scroll-mt-12 overflow-hidden flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh]" aria-label="Our Heritage - La Estuaire Cherai">
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
@@ -961,7 +961,7 @@ function App() {
           <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
         </div>
         
-        {/* Content overlay " centred */}
+        {/* Content overlay - centred */}
         <div className="relative z-10 flex items-center justify-center px-6 md:px-12 lg:px-20 py-12 md:py-16 w-full">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
