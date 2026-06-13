@@ -794,6 +794,7 @@ function App() {
             className="w-full h-full object-cover select-none pointer-events-none"
             aria-hidden="true"
           >
+            <source src="/Keep_the_exact_same_video_comp.webm" type="video/webm" />
             <source src="/Keep_the_exact_same_video_comp.mp4" type="video/mp4" />
           </video>
           {/* Bottom black fade gradient to blend seamlessly into the next section */}

@@ -29,10 +29,8 @@ dist-ssr/
 *.sw?
 
 # Large video files (avoid GitHub 100MB limit)
-public/resort-ad-final.mp4
 public/resort-ad.mp4
 resort ad final out-1.mp4
 /c3b0830e-781b-45d9-89b0-00e9824299cf.mp4
-/Keep_the_exact_same_video_comp.mp4
 
 
