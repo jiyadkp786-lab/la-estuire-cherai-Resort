@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -183,12 +183,111 @@ function App() {
   const navHamburgerClass = isScrolled ? 'text-dark-text hover:text-ocean' : 'text-white hover:text-[#B8E0E0]';
 
   const galleryItems = [
-    { id: "beach", num: "01", title: "Cherai Beach Access", image: "/hero-resort.jpeg", desc: "Just 500 metres from Cherai Beach. Enjoy stunning coastal views and easy beach access from our resort." },
-    { id: "pool", num: "02", title: "Swimming Pool", image: "/pool-1.jpeg", desc: "Relax in our refreshing swimming pool surrounded by lush tropical greenery and backwater breezes." },
-    { id: "dining", num: "03", title: "Joe's Cuisine", image: "/heritage-1.jpeg", desc: "Savor authentic Kerala and South Indian cuisine at Joe's Cuisine, our restaurant at the resort." },
-    { id: "backwaters", num: "04", title: "Kerala Backwater Views", image: "/pool-2.jpeg", desc: "Wake up to tranquil backwater views of the iconic landscapes of Vypin Island, Kochi." },
-    { id: "lake", num: "05", title: "Kayaking & Bird Watching", image: "/lake-view-deluxe.jpeg", desc: "Explore the serene backwaters by kayak or enjoy guided bird watching on Vypin Island." },
-    { id: "suites", num: "06", title: "Comfortable Rooms", image: "/super-deluxe.jpeg", desc: "7 thoughtfully designed rooms for couples, families, and corporate guests seeking comfort in Cherai." }
+    {
+      id: "best-resort",
+      num: "01",
+      title: "Best Resort in Cherai",
+      image: "/explore/best-resort-in-cherai.jpg",
+      desc: "Experience top-tier hospitality and scenic beauty at one of the finest resorts in the Cherai region."
+    },
+    {
+      id: "cherai-night",
+      num: "02",
+      title: "Cherai Night View",
+      image: "/explore/cherai-nigh-view.jpg",
+      desc: "Marvel at the spectacular and peaceful nocturnal landscape of Cherai, sparkling under the stars."
+    },
+    {
+      id: "couple-friendly",
+      num: "03",
+      title: "Couple Friendly Stays",
+      image: "/explore/couple-friendly-resort-cherai.jpg",
+      desc: "A cozy and intimate environment, perfect for couples looking for a romantic retreat."
+    },
+    {
+      id: "couples-resort",
+      num: "04",
+      title: "Romantic Getaways",
+      image: "/explore/couples-resort-in-cherai.jpg",
+      desc: "Create unforgettable memories with premium services designed for romantic getaways."
+    },
+    {
+      id: "kids-friendly",
+      num: "05",
+      title: "Kids Friendly Spaces",
+      image: "/explore/kids-friendly-resort-in-cherai.jpg",
+      desc: "Fun and safe environments for children to play, making it the perfect destination for family holidays."
+    },
+    {
+      id: "night-life",
+      num: "06",
+      title: "Cherai Night Life",
+      image: "/explore/night-life-in-cherai.jpg",
+      desc: "Experience the calming yet vibrant night life around the resort and coastal areas."
+    },
+    {
+      id: "night-resort",
+      num: "07",
+      title: "Resort at Night",
+      image: "/explore/night-resort-in-cherai.jpg",
+      desc: "Enjoy the beautifully lit resort property, offering a serene and magical atmosphere after sunset."
+    },
+    {
+      id: "pool-river",
+      num: "08",
+      title: "Riverside Pool",
+      image: "/explore/pool-near-river.jpg",
+      desc: "Take a dip in our pool situated right next to the peaceful river, combining luxury and nature."
+    },
+    {
+      id: "pool-view",
+      num: "09",
+      title: "Pool View to River",
+      image: "/explore/pool-view-to-river.jpg",
+      desc: "Relax by the poolside while enjoying the stunning, uninterrupted views of the calm river waters."
+    },
+    {
+      id: "premium-resort",
+      num: "10",
+      title: "Premium Amenities",
+      image: "/explore/primiume-resort-in-cherai.jpg",
+      desc: "Indulge in premium facilities and high-end services crafted to make your stay extraordinary."
+    },
+    {
+      id: "river-sea-view",
+      num: "11",
+      title: "River & Sea Views",
+      image: "/explore/river-view-and-sea-view-reosrt-cherai.jpg",
+      desc: "A unique location offering the best of both worlds with breathtaking views of the river and the sea."
+    },
+    {
+      id: "resort-near-beach",
+      num: "12",
+      title: "Beach & River Proximity",
+      image: "/explore/resort-near-cherai-beach-and-river.jpg",
+      desc: "Conveniently located near both the pristine Cherai Beach and the peaceful backwater river."
+    },
+    {
+      id: "river-view",
+      num: "13",
+      title: "Tranquil River Views",
+      image: "/explore/river-view-resort-in-cherai.jpg",
+      desc: "Soak in the calming vistas of the winding river directly from the comfort of our resort."
+    },
+    {
+      id: "south-indian-food",
+      num: "14",
+      title: "South Indian Delicacies",
+      image: "/explore/sounth-indian-food-in-cherai.jpg",
+      desc: "Savor authentic South Indian and traditional Kerala dishes prepared by our expert chefs."
+    },
+    {
+      id: "top-resort",
+      num: "15",
+      title: "Top Resort Experience",
+      image: "/explore/top-5-resort-in-cherai.jpg",
+      desc: "Consistently rated as one of the top resorts in Cherai for cleanliness, service, and location."
+    }
   ];
 
   // Scroll Progress calculations for parallax
@@ -203,7 +302,7 @@ function App() {
       image: "/super-deluxe.jpeg",
       size: "55 sq m",
       capacity: "Up to 2 Guests",
-      price: "â‚¹12,000",
+      price: "₹12,000",
       description: "Our most spacious room, perfect for couples or solo travelers seeking the finest comfort in Cherai. Enjoy premium furnishings, a king bed, high speed WiFi, and a relaxing ambiance just minutes from Cherai Beach and the backwaters of Vypin Island.",
       tags: ["King Bed", "High Speed WiFi", "Scenic Surroundings"]
     },
@@ -213,7 +312,7 @@ function App() {
       image: "/lake-view-deluxe.jpeg",
       size: "50 sq m",
       capacity: "Up to 2 Guests",
-      price: "â‚¹10,000",
+      price: "₹10,000",
       description: "Wake up to breathtaking backwater views from your window. Our Lake View Deluxe Room is ideal for couples and nature lovers who want to experience Kerala's iconic backwater landscapes from the comfort of a well-appointed room in Cherai.",
       tags: ["Backwater View", "Couple Friendly", "Morning Serenity"]
     },
@@ -223,7 +322,7 @@ function App() {
       image: "/deluxe.jpeg",
       size: "40 sq m",
       capacity: "Up to 2 Guests",
-      price: "â‚¹8,000",
+      price: "₹8,000",
       description: "A beautifully designed room offering modern comforts in a peaceful Cherai setting. Ideal for weekend getaways from Kochi, family trips, or couple stays. Enjoy garden views, rain shower, and easy access to our swimming pool and resort facilities.",
       tags: ["Garden View", "Rain Shower", "Pool Access"]
     },
@@ -233,7 +332,7 @@ function App() {
       image: "/deluxe-double.jpeg",
       size: "45 sq m",
       capacity: "Up to 2 Guests",
-      price: "â‚¹7,500",
+      price: "₹7,500",
       description: "Our most value friendly option, a cozy well-furnished room perfect for friends, siblings, or budget-conscious families visiting Cherai. Twin beds, thoughtful amenities, and access to all resort facilities including the swimming pool and dining at Joe's Cuisine.",
       tags: ["Twin Beds", "Family Friendly", "Best Value"]
     }
@@ -288,7 +387,7 @@ function App() {
     }
   ];
 
-  // FAQ data â€” SEO-focused
+  // FAQ data " SEO-focused
   const faqs = [
     {
       question: "Which is the best resort in Cherai near the beach?",
@@ -449,7 +548,7 @@ function App() {
     setActiveSanctuaryIdx((prev) => (prev - 1 + accommodations.length) % accommodations.length);
   };
 
-  // Auto-slide for room carousel â€” pauses on hover
+  // Auto-slide for room carousel " pauses on hover
   useEffect(() => {
     if (isSliderHovered) return;
     const interval = setInterval(() => {
@@ -490,11 +589,11 @@ function App() {
     
     // Construct WhatsApp message with dates, guests, and room type
     const message = `Hello, I would like to request a reservation at La Estuaire Cherai.\n\n` +
-      `â€¢ Check In: ${checkIn}\n` +
-      `â€¢ Check Out: ${checkOut}\n` +
-      `â€¢ Guests: ${guests}\n` +
-      `â€¢ Preferred Room: ${roomType}` +
-      (specialRequests ? `\nâ€¢ Special Requests: ${specialRequests}` : '');
+      `Check In: ${checkIn}\n` +
+      `Check Out: ${checkOut}\n` +
+      `Guests: ${guests}\n` +
+      `Preferred Room: ${roomType}` +
+      (specialRequests ? `\nSpecial Requests: ${specialRequests}` : '');
     
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/919567758080?text=${encodedMessage}`;
@@ -683,7 +782,7 @@ function App() {
       </AnimatePresence>
 
       {/* 5. Hero Section */}
-      <section id="hero" className="relative h-screen w-full overflow-hidden bg-white" aria-label="La Estuaire Cherai â€” Best Resort in Cherai">
+      <section id="hero" className="relative h-screen w-full overflow-hidden bg-white" aria-label="La Estuaire Cherai - Best Resort in Cherai">
         {/* Background Video Container */}
         <div className="absolute inset-0 z-10 overflow-hidden">
           <video 
@@ -707,8 +806,8 @@ function App() {
               <span className="text-[8.5px] tracking-[0.3em] font-medium text-[#B8E0E0] mt-0.5">CHERAI</span>
             </div>
           </div>
-          {/* SEO H1 â€” visually hidden, present for search engines */}
-          <div className="absolute inset-0 flex items-end justify-start px-8 md:px-16 pb-20 z-20 pointer-events-none">
+          {/* SEO H1 " visually hidden, present for search engines */}
+          <div className="absolute inset-0 flex items-end justify-start px-8 md:px-16 pb-32 sm:pb-24 md:pb-20 z-20 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -719,15 +818,15 @@ function App() {
                 Best Resort in Cherai<br />
                 <span className="font-light text-2xl md:text-3xl text-[#B8E0E0]">Near Beach, Backwaters &amp; Kochi</span>
               </h1>
-              <p className="mt-3 text-white/80 text-sm md:text-base font-light max-w-lg drop-shadow">
-                A Boutique Beach &amp; Backwater Resort Â· 500m from Cherai Beach Â· Vypin Island, Kochi
-              </p>
+              {/* <p className="mt-3 text-white/80 text-sm md:text-base font-light max-w-lg drop-shadow">
+                A Boutique Beach &amp; Backwater Resort &middot; 500m from Cherai Beach &middot; Vypin Island, Kochi
+              </p> */}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 5b. Booking Bar Section â€” between Hero and About */}
+      {/* 5b. Booking Bar Section " between Hero and About */}
       <section className="relative z-20 w-full bg-white py-8 px-6 border-b border-light-gray shadow-sm" aria-label="Quick Booking">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -824,7 +923,7 @@ function App() {
             La Estuaire Cherai offers a complete resort experience: swimming pool, kayaking, event hall, authentic Kerala dining, backwater views, and warm personalized hospitality, all just 500 metres from Cherai Beach on Vypin Island.
           </p>
 
-          {/* List of facilities â€” centered grid */}
+          {/* List of facilities " centered grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full text-left mt-2">
             {amenities.map((facility, index) => (
               <div key={index} className="flex gap-3 items-start bg-sand-light p-4 rounded-2xl border border-ocean/5 shadow-sm hover:shadow-md transition-all duration-300">
@@ -841,28 +940,28 @@ function App() {
           
           {/* Internal links to landing pages */}
           <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
-            <a href="/pool-resort-in-cherai" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">Pool Resort in Cherai â†’</a>
+            <a href="/pool-resort-in-cherai" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">Pool Resort in Cherai &rarr;</a>
             <span className="text-dark-text/20">|</span>
-            <a href="/event-hall-in-cherai" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">Event Hall in Cherai â†’</a>
+            <a href="/event-hall-in-cherai" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">Event Hall in Cherai &rarr;</a>
             <span className="text-dark-text/20">|</span>
-            <a href="/resort-near-cherai-beach" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">Resort Near Cherai Beach â†’</a>
+            <a href="/resort-near-cherai-beach" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">Resort Near Cherai Beach &rarr;</a>
           </div>
         </div>
       </section>
 
-      {/* 6. About Section â€” Our Heritage */}
-      <section id="about" className="relative w-full scroll-mt-12 overflow-hidden flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh]" aria-label="Our Heritage â€” La Estuaire Cherai">
+      {/* 6. About Section " Our Heritage */}
+      <section id="about" className="relative w-full scroll-mt-12 overflow-hidden flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh]" aria-label="Our Heritage - La Estuaire Cherai">
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/ChatGPT Image Jun 6, 2026, 07_34_50 PM.png" 
-            alt="La Estuaire Cherai â€” boutique backwater resort on Vypin Island, Kochi" 
+            alt="La Estuaire Cherai - boutique backwater resort on Vypin Island, Kochi" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
         </div>
         
-        {/* Content overlay â€” centred */}
+        {/* Content overlay " centred */}
         <div className="relative z-10 flex items-center justify-center px-6 md:px-12 lg:px-20 py-12 md:py-16 w-full">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -1087,7 +1186,7 @@ function App() {
                 playsInline 
                 className="w-full h-full object-cover"
                 poster="/hero-resort.jpeg"
-                aria-label="La Estuaire Cherai Resort Ad Film â€” Best Resort in Cherai"
+                aria-label="La Estuaire Cherai Resort Ad Film - Best Resort in Cherai"
               />
             </div>
 
@@ -1162,7 +1261,7 @@ function App() {
                   >
                     <img 
                       src={accommodations[prevIdx].image} 
-                      alt={`${accommodations[prevIdx].title} â€” La Estuaire Cherai`} 
+                      alt={`${accommodations[prevIdx].title} - La Estuaire Cherai`} 
                       className="w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute inset-0 bg-black/30 pointer-events-none" />
@@ -1189,7 +1288,7 @@ function App() {
                   >
                     <img 
                       src={accommodations[activeIdx].image} 
-                      alt={`${accommodations[activeIdx].title} â€” Resort in Cherai`} 
+                      alt={`${accommodations[activeIdx].title} - Resort in Cherai`} 
                       className="w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
@@ -1218,7 +1317,7 @@ function App() {
                   >
                     <img 
                       src={accommodations[nextIdx].image} 
-                      alt={`${accommodations[nextIdx].title} â€” Cherai Resort Room`} 
+                      alt={`${accommodations[nextIdx].title} - Cherai Resort Room`} 
                       className="w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute inset-0 bg-black/30 pointer-events-none" />
@@ -1283,7 +1382,7 @@ function App() {
       </section>
 
       {/* Dining Section */}
-      <section id="dining" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12" aria-label="Joe's Cuisine â€” Kerala & South Indian Restaurant in Cherai">
+      <section id="dining" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12" aria-label="Joe's Cuisine - Kerala and South Indian Restaurant in Cherai">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
             
@@ -1293,7 +1392,7 @@ function App() {
                 <motion.img 
                   key={activeDiningImgIdx}
                   src={diningImages[activeDiningImgIdx]} 
-                  alt="Joe's Cuisine â€” Authentic Kerala & South Indian Restaurant at La Estuaire Cherai" 
+                  alt="Joe's Cuisine - Authentic Kerala and South Indian Restaurant at La Estuaire Cherai" 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -1437,10 +1536,10 @@ function App() {
               Enquire About Events <ArrowRight size={14} />
             </a>
             <a href="/birthday-party-hall-in-cherai" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">
-              Birthday Party Hall in Cherai â†’
+              Birthday Party Hall in Cherai &rarr;
             </a>
             <a href="/event-hall-in-cherai" className="text-xs font-semibold text-ocean hover:text-ocean-dark underline underline-offset-2 transition-colors">
-              Event Hall in Cherai â†’
+              Event Hall in Cherai &rarr;
             </a>
           </div>
         </div>
@@ -1466,7 +1565,7 @@ function App() {
             >
               <span>Book Your Stay in Cherai</span>
               <span className="w-6 h-6 rounded-full bg-ocean flex items-center justify-center text-white text-[10px] group-hover:scale-110 transition-transform">
-                â†’
+                &rarr;
               </span>
             </a>
           </div>
@@ -1488,7 +1587,16 @@ function App() {
             const { widthClass, heightClass } = getCardDimensions();
 
             return (
-              <div className="relative w-full h-[260px] sm:h-[340px] md:h-[480px] flex items-center justify-center overflow-visible select-none">
+              <div className="relative w-full h-[260px] sm:h-[340px] md:h-[480px] flex items-center justify-center overflow-visible select-none px-4 md:px-12">
+                {/* Left Arrow Button */}
+                <button
+                  onClick={() => setActiveGalleryIdx((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)}
+                  className="absolute left-2 sm:left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-dark-text/15 hover:border-dark-text/40 bg-white/90 backdrop-blur-sm text-dark-text hover:bg-dark-text hover:text-white flex items-center justify-center transition-all duration-300 z-30 cursor-pointer shadow-md"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+
                 {/* 3D Stage Container */}
                 <motion.div 
                   drag={windowWidth < 1024 ? "x" : false}
@@ -1514,30 +1622,31 @@ function App() {
                     if (circularOffset < -len / 2) circularOffset += len;
                     if (circularOffset > len / 2) circularOffset -= len;
 
-                    // Calculate responsive 3D transforms
+                    // Calculate responsive 3D transforms (side cards recede back in 3D space)
                     let rotateY = circularOffset * -22;
-                    let scale = 0.82 + Math.abs(circularOffset) * 0.07;
-                    let z = Math.abs(circularOffset) * 45;
-                    let x = circularOffset * 260;
+                    let scale = Math.max(0.4, 1.0 - Math.abs(circularOffset) * 0.12);
+                    let z = -Math.abs(circularOffset) * 100;
+                    let x = circularOffset * 280;
 
                     if (windowWidth < 480) {
                       x = circularOffset * 135;
-                      z = Math.abs(circularOffset) * 20;
+                      z = -Math.abs(circularOffset) * 40;
                       rotateY = circularOffset * -18;
-                      scale = 0.85 + Math.abs(circularOffset) * 0.05;
+                      scale = Math.max(0.5, 1.0 - Math.abs(circularOffset) * 0.15);
                     } else if (windowWidth < 768) {
-                      x = circularOffset * 130;
-                      z = Math.abs(circularOffset) * 40;
+                      x = circularOffset * 150;
+                      z = -Math.abs(circularOffset) * 60;
                       rotateY = circularOffset * -22;
-                      scale = 0.82 + Math.abs(circularOffset) * 0.08;
+                      scale = Math.max(0.45, 1.0 - Math.abs(circularOffset) * 0.14);
                     } else if (windowWidth < 1024) {
-                      x = circularOffset * 200;
-                      z = Math.abs(circularOffset) * 45;
+                      x = circularOffset * 210;
+                      z = -Math.abs(circularOffset) * 80;
                       rotateY = circularOffset * -22;
-                      scale = 0.82 + Math.abs(circularOffset) * 0.07;
+                      scale = Math.max(0.42, 1.0 - Math.abs(circularOffset) * 0.13);
                     }
                     
                     const isActive = circularOffset === 0;
+                    const isVisible = Math.abs(circularOffset) <= 2;
 
                     return (
                       <motion.div
@@ -1559,18 +1668,25 @@ function App() {
                           z: z,
                           rotateY: rotateY,
                           scale: scale,
-                          opacity: Math.abs(circularOffset) > 2 ? 0.3 : 1,
+                          opacity: isVisible ? (isActive ? 1 : (Math.abs(circularOffset) === 1 ? 0.85 : 0.45)) : 0,
                           zIndex: 10 - Math.abs(circularOffset)
                         }}
                         transition={{ duration: 0.6, ease: [0.32, 0.94, 0.6, 1] }}
-                        onClick={() => setActiveGalleryIdx(idx)}
+                        onClick={() => {
+                          if (isVisible) {
+                            setActiveGalleryIdx(idx);
+                          }
+                        }}
                         className={`absolute ${widthClass} ${heightClass} rounded-2xl overflow-hidden shadow-xl cursor-pointer group flex-shrink-0 origin-center`}
-                        style={{ transformStyle: "preserve-3d" }}
+                        style={{ 
+                          transformStyle: "preserve-3d",
+                          pointerEvents: isVisible ? "auto" : "none"
+                        }}
                       >
                         {/* Image */}
                         <img 
                           src={item.image} 
-                          alt={`${item.title} â€” La Estuaire Cherai Resort`}
+                          alt={`${item.title} - La Estuaire Cherai Resort`}
                           className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover:scale-105"
                         />
                         {/* Subtle dark overlay for inactive cards */}
@@ -1581,15 +1697,48 @@ function App() {
                     );
                   })}
                 </motion.div>
+
+                {/* Right Arrow Button */}
+                <button
+                  onClick={() => setActiveGalleryIdx((prev) => (prev + 1) % galleryItems.length)}
+                  className="absolute right-2 sm:right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-dark-text/15 hover:border-dark-text/40 bg-white/90 backdrop-blur-sm text-dark-text hover:bg-dark-text hover:text-white flex items-center justify-center transition-all duration-300 z-30 cursor-pointer shadow-md"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={18} />
+                </button>
               </div>
             );
           })()}
+
+          {/* Active Gallery Item Details Area */}
+          <div className="w-full max-w-4xl mx-auto px-6 mt-12 text-center min-h-[90px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={galleryItems[activeGalleryIdx].id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="flex flex-col items-center"
+              >
+                {/* Title */}
+                <h3 className="font-display text-lg sm:text-xl md:text-2xl font-normal uppercase tracking-widest text-dark-text mb-3">
+                  {galleryItems[activeGalleryIdx].title}
+                </h3>
+                
+                {/* Description */}
+                <p className="text-dark-text/70 text-xs sm:text-sm font-light leading-relaxed max-w-2xl">
+                  {galleryItems[activeGalleryIdx].desc}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
         </div>
       </section>
 
       {/* EXPLORE CHERAI Section */}
-      <section id="explore-cherai" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray" aria-label="Explore Cherai â€” Nearby Attractions">
+      <section id="explore-cherai" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray" aria-label="Explore Cherai - Nearby Attractions">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -2038,7 +2187,7 @@ function App() {
           {/* Google Map */}
           <div className="lg:col-span-5 rounded-[24px] overflow-hidden h-64 border border-white/10 shadow-sm">
             <iframe 
-              title="La Estuaire Cherai Map Location â€” Resort near Cherai Beach, Vypin Island"
+              title="La Estuaire Cherai Map Location - Resort near Cherai Beach, Vypin Island"
               src="https://maps.google.com/maps?q=La%20Estuaire%20Cherai%20Cherai%20Vypin%20Kerala&t=&z=15&ie=UTF8&iwloc=&output=embed" 
               width="100%" 
               height="100%" 
@@ -2052,7 +2201,7 @@ function App() {
         </div>
 
         <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-center text-[10px] text-white/40 font-light gap-4">
-          <p>Â© {new Date().getFullYear()} La Estuaire Cherai. All rights reserved. | Best Resort in Cherai, Vypin Island, Kochi, Kerala</p>
+          <p>&copy; {new Date().getFullYear()} La Estuaire Cherai. All rights reserved. | Best Resort in Cherai, Vypin Island, Kochi, Kerala</p>
         </div>
       </footer>
 
@@ -2061,4 +2210,5 @@ function App() {
 }
 
 export default App;
+
 
