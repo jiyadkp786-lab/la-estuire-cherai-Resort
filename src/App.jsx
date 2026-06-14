@@ -29,6 +29,9 @@ import {
   ChevronDown
 } from 'lucide-react';
 
+import heroImage from './assets/Hero section image.png';
+import backgroundImage from './assets/background image.png';
+
 // Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
@@ -705,7 +708,7 @@ function App() {
               </a>
             </div>
 
-            {/* Right Nav links & CTA */}
+            {/* Right Nav links */}
             <div className="flex items-center gap-8 justify-start w-[42%]">
               {['Dining', 'Portfolio'].map((item) => (
                 <a 
@@ -717,14 +720,6 @@ function App() {
                   <span className={`absolute bottom-[-4px] left-0 w-full h-[1.5px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${navUnderlineClass}`} />
                 </a>
               ))}
-              <a 
-                href="https://wa.me/919567758080?text=Hello%2C%20I%20would%20like%20to%20book%20a%20stay%20at%20La%20Estuaire%20Cherai."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-4 px-5 py-2 rounded-full bg-ocean hover:bg-ocean-dark text-dark-text hover:text-white text-[10px] font-bold tracking-widest uppercase transition-all duration-300 shadow-sm"
-              >
-                Book Now
-              </a>
             </div>
           </div>
         </div>
@@ -782,46 +777,45 @@ function App() {
       </AnimatePresence>
 
       {/* 5. Hero Section */}
-      <section id="hero" className="relative h-screen w-full overflow-hidden bg-white" aria-label="La Estuaire Cherai - Best Resort in Cherai">
-        {/* Background Video Container */}
+      <section id="hero" className="relative h-[50vh] sm:h-[65vh] md:h-[80vh] lg:h-screen w-full overflow-hidden bg-white" aria-label="La Estuaire Cherai - Best Resort in Cherai">
+        {/* Background Image Container */}
         <div className="absolute inset-0 z-10 overflow-hidden">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover select-none pointer-events-none"
-            aria-hidden="true"
-          >
-            <source src="/Keep_the_exact_same_video_comp.webm" type="video/webm" />
-            <source src="/Keep_the_exact_same_video_comp.mp4" type="video/mp4" />
-          </video>
-          {/* Bottom black fade gradient to blend seamlessly into the next section */}
-          <div className="absolute inset-x-0 bottom-0 h-[25vh] bg-gradient-to-t from-black to-transparent pointer-events-none" />
-          {/* Resort logo overlay */}
-          <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3 bg-black/45 backdrop-blur-md px-5 py-3.5 rounded-full border border-white/10 shadow-lg select-none pointer-events-none">
-            <ResortLogo className="h-11 w-11" />
-            <div className="flex flex-col leading-none text-left">
-              <span className="font-display text-[12px] font-light tracking-[0.2em] text-white">LA ESTUAIRE</span>
-              <span className="text-[8.5px] tracking-[0.3em] font-medium text-[#B8E0E0] mt-0.5">CHERAI</span>
-            </div>
-          </div>
-          {/* SEO H1 - visually hidden, present for search engines */}
-          <div className="absolute inset-0 flex items-end justify-start px-8 md:px-16 pb-32 sm:pb-24 md:pb-20 z-20 pointer-events-none">
+          <img 
+            src={heroImage} 
+            alt="La Estuaire Cherai - Best Resort in Cherai" 
+            className="w-full h-full object-cover object-[70%_center] sm:object-center select-none pointer-events-none"
+          />
+          {/* Subtle top gradient overlay only to make header text readable */}
+          <div className="absolute inset-x-0 top-0 h-[15vh] bg-gradient-to-b from-black/35 to-transparent pointer-events-none" />
+          {/* Centered responsive title, subtitle, and booking button */}
+          <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 md:px-8 z-20 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.8, duration: 1, ease: "easeOut" }}
-              className="max-w-2xl"
+              transition={{ delay: 1.0, duration: 1, ease: "easeOut" }}
+              className="max-w-4xl text-center flex flex-col items-center gap-6"
             >
-              <h1 className="text-white font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight drop-shadow-lg">
-                Best Resort in Cherai<br />
-                <span className="font-light text-2xl md:text-3xl text-[#B8E0E0]">Near Beach, Backwaters &amp; Kochi</span>
+              <h1 className="text-white font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)]">
+                Best Resort in Cherai
+                <span className="font-light text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[#B8E0E0] block mt-4 sm:mt-6 tracking-wide sm:tracking-widest uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+                  Near Beach, Backwaters &amp; Kochi
+                </span>
               </h1>
-              {/* <p className="mt-3 text-white/80 text-sm md:text-base font-light max-w-lg drop-shadow">
-                A Boutique Beach &amp; Backwater Resort &middot; 500m from Cherai Beach &middot; Vypin Island, Kochi
-              </p> */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.4, duration: 0.8 }}
+                className="pointer-events-auto"
+              >
+                <a 
+                  href="https://wa.me/919567758080?text=Hello%2C%20I%20would%20like%20to%20book%20a%20stay%20at%20La%20Estuaire%20Cherai."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-ocean hover:bg-ocean-dark text-dark-text hover:text-white text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-xl"
+                >
+                  Book Now
+                </a>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -907,8 +901,22 @@ function App() {
         </div>
       </section>
 
-      {/* FACILITIES Section */}
-      <section id="facilities" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray" aria-label="Resort Facilities">
+      <div className="w-full relative">
+        {/* Background Image Layer with custom opacity */}
+        <div 
+          style={{ 
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            opacity: 0.40
+          }}
+          className="absolute inset-0 z-0 pointer-events-none"
+        />
+        <div className="relative z-10 w-full">
+        {/* FACILITIES Section */}
+        <section id="facilities" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12 border-b border-light-gray" aria-label="Resort Facilities">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
           <div className="flex items-center gap-3">
             <span className="w-12 h-[1px] bg-ocean" />
@@ -927,7 +935,7 @@ function App() {
           {/* List of facilities - centered grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full text-left mt-2">
             {amenities.map((facility, index) => (
-              <div key={index} className="flex gap-3 items-start bg-sand-light p-4 rounded-2xl border border-ocean/5 shadow-sm hover:shadow-md transition-all duration-300">
+              <div key={index} className="flex gap-3 items-start bg-white p-4 rounded-2xl border border-ocean/5 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="w-8 h-8 rounded-full bg-ocean/15 flex items-center justify-center text-ocean flex-shrink-0 mt-0.5">
                   <facility.icon size={14} />
                 </div>
@@ -1041,7 +1049,7 @@ function App() {
       </section>
 
       {/* WHY STAY IN CHERAI Section */}
-      <section id="why-cherai" className="py-12 md:py-16 px-6 md:px-12 bg-sand-light scroll-mt-12 border-b border-light-gray" aria-label="Why Stay in Cherai">
+      <section id="why-cherai" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12 border-b border-light-gray" aria-label="Why Stay in Cherai">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -1110,7 +1118,7 @@ function App() {
       </section>
 
       {/* Promo Video Section */}
-      <section id="promo-video" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray w-full overflow-hidden" aria-label="Resort Ad Film">
+      <section id="promo-video" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12 border-b border-light-gray w-full overflow-hidden" aria-label="Resort Ad Film">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
             
@@ -1186,7 +1194,6 @@ function App() {
                 controls 
                 playsInline 
                 className="w-full h-full object-cover"
-                poster="/hero-resort.jpeg"
                 aria-label="La Estuaire Cherai Resort Ad Film - Best Resort in Cherai"
               />
             </div>
@@ -1196,7 +1203,7 @@ function App() {
       </section>
 
       {/* 7. Gallery / Accommodations Section */}
-      <section id="gallery" className="pt-12 pb-8 md:pt-16 md:pb-10 bg-white border-y border-light-gray scroll-mt-12 overflow-hidden w-full" aria-label="Rooms & Accommodations">
+      <section id="gallery" className="pt-12 pb-8 md:pt-16 md:pb-10 bg-transparent border-y border-light-gray scroll-mt-12 overflow-hidden w-full" aria-label="Rooms & Accommodations">
 
         {/* Section Header */}
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mb-8 md:mb-10">
@@ -1383,7 +1390,7 @@ function App() {
       </section>
 
       {/* Dining Section */}
-      <section id="dining" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12" aria-label="Joe's Cuisine - Kerala and South Indian Restaurant in Cherai">
+      <section id="dining" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12" aria-label="Joe's Cuisine - Kerala and South Indian Restaurant in Cherai">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
             
@@ -1461,7 +1468,7 @@ function App() {
       </section>
 
       {/* EVENTS & CELEBRATIONS Section */}
-      <section id="events" className="py-12 md:py-16 px-6 md:px-12 bg-sand-light scroll-mt-12 border-y border-light-gray" aria-label="Event Hall & Birthday Party Venue in Cherai">
+      <section id="events" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12 border-y border-light-gray" aria-label="Event Hall & Birthday Party Venue in Cherai">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -1547,7 +1554,7 @@ function App() {
       </section>
 
       {/* 3D Curved Gallery Section */}
-      <section id="portfolio" className="pt-16 pb-6 md:pt-20 md:pb-16 px-6 md:px-12 bg-white overflow-hidden scroll-mt-12 w-full" aria-label="Resort Gallery">
+      <section id="portfolio" className="pt-16 pb-6 md:pt-20 md:pb-16 px-6 md:px-12 bg-transparent overflow-hidden scroll-mt-12 w-full" aria-label="Resort Gallery">
         <div className="max-w-7xl mx-auto text-center">
           
           {/* Header */}
@@ -1739,7 +1746,7 @@ function App() {
       </section>
 
       {/* EXPLORE CHERAI Section */}
-      <section id="explore-cherai" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12 border-b border-light-gray" aria-label="Explore Cherai - Nearby Attractions">
+      <section id="explore-cherai" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12 border-b border-light-gray" aria-label="Explore Cherai - Nearby Attractions">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -1794,7 +1801,7 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="bg-sand-light p-6 rounded-2xl border border-ocean/10 shadow-sm hover:shadow-md transition-all duration-300"
+                className="bg-white p-6 rounded-2xl border border-ocean/10 shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-sans font-semibold text-sm text-dark-text">{place.name}</h3>
@@ -1814,7 +1821,7 @@ function App() {
       </section>
 
       {/* 10. Testimonial Section */}
-      <section className="pt-6 md:pt-16 pb-16 px-6 md:px-12 bg-white overflow-hidden" aria-label="Guest Reviews">
+      <section className="pt-6 md:pt-16 pb-16 px-6 md:px-12 bg-transparent overflow-hidden" aria-label="Guest Reviews">
         <div className="max-w-5xl mx-auto relative px-4 md:px-12">
           
           <div className="text-center mb-16">
@@ -1835,7 +1842,7 @@ function App() {
           <div 
             onMouseEnter={() => setIsCarouselHovered(true)}
             onMouseLeave={() => setIsCarouselHovered(false)}
-            className="relative bg-sand-light rounded-[24px] md:rounded-[32px] p-5 md:p-16 border border-sand/30 shadow-sm overflow-hidden"
+            className="relative bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-16 border border-sand/30 shadow-sm overflow-hidden"
           >
             <div className="absolute top-4 left-4 text-4xl md:top-8 md:left-8 md:text-6xl font-serif text-ocean/15 select-none pointer-events-none">"</div>
             
@@ -1922,7 +1929,7 @@ function App() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-12 md:py-16 px-6 md:px-12 bg-sand-light scroll-mt-12 border-y border-light-gray" aria-label="Frequently Asked Questions">
+      <section id="faq" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12 border-y border-light-gray" aria-label="Frequently Asked Questions">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -1965,8 +1972,8 @@ function App() {
       </section>
 
       {/* 12. Booking Section */}
-      <section id="booking" className="py-12 md:py-16 px-6 md:px-12 bg-white scroll-mt-12" aria-label="Book Your Stay at La Estuaire Cherai">
-        <div className="max-w-4xl mx-auto bg-sand-light p-8 md:p-16 rounded-[32px] border border-sand/30 shadow-md">
+      <section id="booking" className="py-12 md:py-16 px-6 md:px-12 bg-transparent scroll-mt-12" aria-label="Book Your Stay at La Estuaire Cherai">
+        <div className="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-[32px] border border-sand/30 shadow-md">
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-ocean text-xs font-semibold tracking-[0.3em] uppercase mb-4 block">Secure Booking</span>
             <h2 className="font-display text-3xl md:text-4xl font-light text-dark-text mb-4">
@@ -2106,6 +2113,8 @@ function App() {
           )}
         </div>
       </section>
+        </div>
+      </div>
 
       {/* 13. Footer */}
       <footer className="bg-dark-text text-white py-16 px-6 md:px-12 border-t border-white/5" role="contentinfo">
