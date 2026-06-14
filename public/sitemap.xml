@@ -4,17 +4,17 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/</loc>
+    <loc>https://laestuaire.in/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://la-estuire-cherai-resort-gafa.vercel.app/hero-resort.jpeg</image:loc>
+      <image:loc>https://laestuaire.in/hero-resort.jpeg</image:loc>
       <image:title>La Estuaire Cherai — Best Resort in Cherai near Cherai Beach</image:title>
       <image:caption>La Estuaire Cherai is a boutique beach and backwater resort near Cherai Beach, Vypin Island, Kochi</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://la-estuire-cherai-resort-gafa.vercel.app/pool-1.jpeg</image:loc>
+      <image:loc>https://laestuaire.in/pool-1.jpeg</image:loc>
       <image:title>Swimming Pool at La Estuaire Cherai Resort</image:title>
       <image:caption>Pool Resort in Cherai — swimming pool at La Estuaire Cherai</image:caption>
     </image:image>
@@ -22,49 +22,49 @@
 
   <!-- SEO Landing Pages -->
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/resort-near-cherai-beach</loc>
+    <loc>https://laestuaire.in/resort-near-cherai-beach</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/pool-resort-in-cherai</loc>
+    <loc>https://laestuaire.in/pool-resort-in-cherai</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/event-hall-in-cherai</loc>
+    <loc>https://laestuaire.in/event-hall-in-cherai</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/birthday-party-hall-in-cherai</loc>
+    <loc>https://laestuaire.in/birthday-party-hall-in-cherai</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/south-indian-restaurant-in-cherai</loc>
+    <loc>https://laestuaire.in/south-indian-restaurant-in-cherai</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/resort-near-kuzhippally-beach</loc>
+    <loc>https://laestuaire.in/resort-near-kuzhippally-beach</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://la-estuire-cherai-resort-gafa.vercel.app/weekend-getaway-near-kochi</loc>
+    <loc>https://laestuaire.in/weekend-getaway-near-kochi</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>

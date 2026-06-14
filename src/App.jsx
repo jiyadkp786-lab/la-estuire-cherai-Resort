@@ -623,7 +623,7 @@ function App() {
               className="flex flex-col items-center"
             >
               <ResortLogo className="h-20 w-20 text-ocean animate-float" />
-              <h1 className="mt-4 font-display text-2xl font-light tracking-[0.3em] uppercase text-ocean">LA ESTUAIRE</h1>
+              <div className="mt-4 font-display text-2xl font-light tracking-[0.3em] uppercase text-ocean">LA ESTUAIRE</div>
               <p className="mt-1 text-xs tracking-[0.4em] uppercase text-sand-dark">Cherai, Kerala</p>
               <div className="mt-8 h-[2px] w-24 overflow-hidden bg-sand-light rounded-full">
                 <motion.div 

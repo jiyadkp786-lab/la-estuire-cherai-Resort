@@ -5,7 +5,7 @@ Allow: /
 Disallow: /private/
 
 # Sitemap
-Sitemap: https://la-estuire-cherai-resort-gafa.vercel.app/sitemap.xml
+Sitemap: https://laestuaire.in/sitemap.xml
 
 # Crawl-delay (optional, be polite to bots)
 Crawl-delay: 1
