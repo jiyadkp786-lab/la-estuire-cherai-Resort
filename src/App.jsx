@@ -40,7 +40,7 @@ const ResortLogo = ({ className = "h-10 w-10" }) => (
   <img 
     src="/logo.jpeg" 
     alt="La Estuaire Cherai Logo" 
-    className={`${className} object-contain rounded-full`}
+    className={`${className} object-contain`}
   />
 );
 
@@ -910,7 +910,7 @@ function App() {
             backgroundPosition: 'center top',
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
-            opacity: 0.40
+            opacity: 0.60
           }}
           className="absolute inset-0 z-0 pointer-events-none"
         />
