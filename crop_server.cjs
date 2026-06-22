@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 4321;
-const WORKSPACE_DIR = path.join(__dirname, '../../../../OneDrive/la estuire cherai');
+const WORKSPACE_DIR = __dirname;
 const LOGO_PATH = path.join(WORKSPACE_DIR, 'src/assets/logo.jpeg');
 const PUBLIC_DIR = path.join(WORKSPACE_DIR, 'public');
 
@@ -42,32 +42,26 @@ const server = http.createServer((req, res) => {
               const ctx512 = canvas512.getContext('2d');
               ctx512.drawImage(img, cropX, cropY, cropSize, cropSize, 0, 0, 512, 512);
 
-              // Generate 192x192
-              const canvas192 = document.createElement('canvas');
-              canvas192.width = 192;
-              canvas192.height = 192;
-              canvas192.getContext('2d').drawImage(canvas512, 0, 0, 192, 192);
-              const data192 = canvas192.toDataURL('image/png');
+              const generateDataUrl = (size) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                canvas.getContext('2d').drawImage(canvas512, 0, 0, size, size);
+                return canvas.toDataURL('image/png');
+              };
 
-              // Generate 32x32
-              const canvas32 = document.createElement('canvas');
-              canvas32.width = 32;
-              canvas32.height = 32;
-              canvas32.getContext('2d').drawImage(canvas512, 0, 0, 32, 32);
-              const data32 = canvas32.toDataURL('image/png');
-
-              // Generate 48x48 (for fallback .ico)
-              const canvas48 = document.createElement('canvas');
-              canvas48.width = 48;
-              canvas48.height = 48;
-              canvas48.getContext('2d').drawImage(canvas512, 0, 0, 48, 48);
-              const data48 = canvas48.toDataURL('image/png');
+              const data16 = generateDataUrl(16);
+              const data32 = generateDataUrl(32);
+              const data48 = generateDataUrl(48);
+              const data180 = generateDataUrl(180);
+              const data192 = generateDataUrl(192);
+              const data512 = generateDataUrl(512);
 
               document.getElementById('status').innerText = 'Sending to server...';
               fetch('/upload', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ data192, data32, data48 })
+                body: JSON.stringify({ data16, data32, data48, data180, data192, data512 })
               })
               .then(r => r.text())
               .then(txt => {
@@ -112,12 +106,22 @@ const server = http.createServer((req, res) => {
           console.log('Saved:', destPath);
         };
 
-        saveBase64(payload.data192, 'favicon.png');
+        saveBase64(payload.data16, 'favicon-16x16.png');
         saveBase64(payload.data32, 'favicon-32x32.png');
+        saveBase64(payload.data48, 'favicon-48x48.png');
         saveBase64(payload.data48, 'favicon.ico');
+        saveBase64(payload.data180, 'apple-touch-icon.png');
+        saveBase64(payload.data192, 'favicon.png');
+        saveBase64(payload.data512, 'android-chrome-512x512.png');
+
+        // Also save favicon.ico to workspace root just in case
+        const base64Ico = payload.data48.replace(/^data:image\/png;base64,/, '');
+        const rootIcoPath = path.join(WORKSPACE_DIR, 'favicon.ico');
+        fs.writeFileSync(rootIcoPath, base64Ico, 'base64');
+        console.log('Saved:', rootIcoPath);
 
         res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('Files saved successfully');
+        res.end('All favicon files saved successfully');
 
         // Gracefully shut down server after short delay
         setTimeout(() => {
@@ -138,3 +142,4 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
+
