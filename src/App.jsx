@@ -2254,6 +2254,9 @@ function App() {
                 <a href="/birthday-party-hall-in-cherai" className="hover:text-white transition-colors">Birthday Party Hall in Cherai</a>
                 <a href="/south-indian-restaurant-in-cherai" className="hover:text-white transition-colors">South Indian Restaurant in Cherai</a>
                 <a href="/resort-near-kuzhippally-beach" className="hover:text-white transition-colors">Resort Near Kuzhippally Beach</a>
+                <a href="/resort-near-munambam-beach" className="hover:text-white transition-colors">Resort Near Munambam Beach</a>
+                <a href="/beach-and-backwater-resort-in-cherai" className="hover:text-white transition-colors">Beach &amp; Backwater Resort in Cherai</a>
+                <a href="/top-resorts-in-cherai" className="hover:text-white transition-colors">Top Resorts in Cherai</a>
                 <a href="/weekend-getaway-near-kochi" className="hover:text-white transition-colors">Weekend Getaway Near Kochi</a>
               </nav>
             </div>
