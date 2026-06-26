@@ -489,6 +489,8 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
+
   // GSAP Counter Animations
   useEffect(() => {
     if (isLoading) return;
@@ -2116,6 +2118,68 @@ function App() {
         </div>
       </div>
 
+      {/* 12.5. Booking Platforms & Socials Section */}
+      <section className="py-10 bg-[#F7F3EC] border-y border-sand/40 overflow-hidden w-full" aria-label="Book or Connect With Us">
+        <style>{`
+          @keyframes booking-ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+          }
+          .booking-ticker-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            animation: booking-ticker 30s linear infinite;
+          }
+          .booking-ticker-track:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="flex-shrink-0 text-center lg:text-left">
+              <span className="text-ocean text-[10px] font-bold tracking-[0.2em] uppercase block mb-1">Trusted Platforms</span>
+              <h3 className="font-display text-lg sm:text-xl text-dark-text font-medium">As Seen &amp; Bookable On</h3>
+            </div>
+            
+            {/* Sliding Container */}
+            <div className="w-full overflow-hidden py-2">
+              <div className="booking-ticker-track">
+                {[
+                  { name: "Google Hotels", url: "https://www.google.com/travel/search?ts=CAESCgoCCAMKAggDEAAaHBIaEhQKBwjqDxAGGBsSBwjqDxAGGBwYATICEAAqBwoFOgNJTlI&qs=CAEyE0Nnb0l6ZXlRemRxb21hd3VFQUU4CkIJEUzn4FDz7ePcQgkRbXM_AGClORlCCRGKq_K0oYWOZFpSCAEyTqoBSxABKgoiBnJlc29ydCgAMh8QASIbUG1JFuEYdlmTRnwS-bRoOuKEDxdpOQKKlKJbMhoQAiIWcmVzb3J0IGluIGNoZXJhaSBiZWFjaA&utm_campaign=sharing&utm_medium=link_btn&utm_source=htls", logo: "google.com", color: "hover:border-blue-500 hover:text-blue-500" },
+                  { name: "MakeMyTrip", url: "https://share.google/sfeDBuJ2IH1n3nvmU", logo: "makemytrip.com", color: "hover:border-amber-600 hover:text-amber-600" },
+                  { name: "Goibibo", url: "https://share.google/NXR7xc0uPZQad743x", logo: "goibibo.com", color: "hover:border-blue-600 hover:text-blue-600" },
+                  { name: "TripAdvisor", url: "https://share.google/m2dBve3rf5vr3JnNY", logo: "tripadvisor.com", color: "hover:border-green-600 hover:text-green-600" },
+                  { name: "Planet of Hotels", url: "https://share.google/3yzHmGLajYSDJ6gPe", logo: "planetofhotels.com", color: "hover:border-purple-600 hover:text-purple-600" },
+                  { name: "Getaroom", url: "https://share.google/nie282RZyTitcWbSY", logo: "getaroom.com", color: "hover:border-teal-600 hover:text-teal-600" },
+                  { name: "HotelsGDS", url: "https://share.google/4rKcwpnw7ZAkm6F7c", logo: "hotelsgds.com", color: "hover:border-sky-600 hover:text-sky-600" }
+                ].concat([
+                  { name: "Google Hotels", url: "https://www.google.com/travel/search?ts=CAESCgoCCAMKAggDEAAaHBIaEhQKBwjqDxAGGBsSBwjqDxAGGBwYATICEAAqBwoFOgNJTlI&qs=CAEyE0Nnb0l6ZXlRemRxb21hd3VFQUU4CkIJEUzn4FDz7ePcQgkRbXM_AGClORlCCRGKq_K0oYWOZFpSCAEyTqoBSxABKgoiBnJlc29ydCgAMh8QASIbUG1JFuEYdlmTRnwS-bRoOuKEDxdpOQKKlKJbMhoQAiIWcmVzb3J0IGluIGNoZXJhaSBiZWFjaA&utm_campaign=sharing&utm_medium=link_btn&utm_source=htls", logo: "google.com", color: "hover:border-blue-500 hover:text-blue-500" },
+                  { name: "MakeMyTrip", url: "https://share.google/sfeDBuJ2IH1n3nvmU", logo: "makemytrip.com", color: "hover:border-amber-600 hover:text-amber-600" },
+                  { name: "Goibibo", url: "https://share.google/NXR7xc0uPZQad743x", logo: "goibibo.com", color: "hover:border-blue-600 hover:text-blue-600" },
+                  { name: "TripAdvisor", url: "https://share.google/m2dBve3rf5vr3JnNY", logo: "tripadvisor.com", color: "hover:border-green-600 hover:text-green-600" },
+                  { name: "Planet of Hotels", url: "https://share.google/3yzHmGLajYSDJ6gPe", logo: "planetofhotels.com", color: "hover:border-purple-600 hover:text-purple-600" },
+                  { name: "Getaroom", url: "https://share.google/nie282RZyTitcWbSY", logo: "getaroom.com", color: "hover:border-teal-600 hover:text-teal-600" },
+                  { name: "HotelsGDS", url: "https://share.google/4rKcwpnw7ZAkm6F7c", logo: "hotelsgds.com", color: "hover:border-sky-600 hover:text-sky-600" }
+                ]).map((item, index) => (
+                  <a
+                    key={index}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-3 bg-white border border-sand/40 rounded-2xl text-[10px] sm:text-xs font-semibold text-dark-text/75 tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow cursor-pointer inline-flex items-center gap-2"
+                  >
+                    <img src={`https://www.google.com/s2/favicons?domain=${item.logo}&sz=64`} alt={item.name} className="w-4 h-4 object-contain" />
+                    <span>{item.name}</span>
+                    <span className="text-[10px] opacity-60">&rarr;</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 13. Footer */}
       <footer className="bg-dark-text text-white py-16 px-6 md:px-12 border-t border-white/5" role="contentinfo">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
@@ -2133,6 +2197,23 @@ function App() {
               <p className="text-xs font-light text-white/60 leading-relaxed max-w-xs mb-6">
                 A boutique beach &amp; backwater resort on Vypin Island, just 500 metres from Cherai Beach. The best resort in Cherai for families, couples, and weekend getaways from Kochi.
               </p>
+              
+              {/* TripAdvisor Rated Badge */}
+              <div className="mb-6 flex flex-col items-start gap-2 bg-white/5 p-4 rounded-2xl inline-block">
+                <span className="text-[9px] font-bold tracking-widest uppercase text-white/50">Recommended on TripAdvisor</span>
+                <a 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  href="https://www.tripadvisor.com/Hotel_Review-g2647335-d27176156-Reviews-La_Estuaire-Cherai_Beach_Vypin_Island_Kochi_Cochin_Ernakulam_District_Kerala.html"
+                  className="hover:scale-[1.03] transition-transform duration-200 block"
+                >
+                  <img 
+                    src="https://www.tripadvisor.com/img/cdsi/img2/badges/ollie-11424-2.gif" 
+                    alt="TripAdvisor" 
+                    className="h-10 w-auto object-contain"
+                  />
+                </a>
+              </div>
             </div>
 
             <div className="space-y-4 text-xs font-light text-white/70">
